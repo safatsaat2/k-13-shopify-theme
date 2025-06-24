@@ -290,6 +290,7 @@
         onload="this.media='all'"
       >
     {%- endif -%}
+    {{ 'sa-swiper.css' | asset_url | stylesheet_tag }}
 
     <script>
       if (Shopify.designMode) {
@@ -372,5 +373,6 @@
     {%- if settings.cart_type == 'drawer' -%}
       <script src="{{ 'cart-drawer.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}
+    <script src="{{ 'sa-swiper.js' | asset_url }}" defer="defer"></script>
   </body>
 </html>
