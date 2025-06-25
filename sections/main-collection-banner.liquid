@@ -2,46 +2,114 @@
 {{ 'component-collection-hero.css' | asset_url | stylesheet_tag }}
 
 {%- style -%}
-  @media screen and (max-width: 749px) {
-    .collection-hero--with-image .collection-hero__inner {
-      padding-bottom: calc({{ settings.media_shadow_vertical_offset | at_least: 0 }}px + 2rem);
+  .nxt-allCourses__hero {
+        background-image: url('{% if section.settings.background_image != blank %}{{ section.settings.background_image | image_url: width: 1920 }}{% else %}{{ 'courses-bg.png' | asset_url }}{% endif %}');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        width: 100%;
+        display: flex;
+        padding: {{ section.settings.padding_top }}px 15px {{ section.settings.padding_bottom }}px;
+        min-height: 397px;
     }
-  }
+
+    .nxt-courseHero__container {
+        display: flex;
+        gap: 20px;
+        max-width: 1311px;
+        width: 100%;
+        margin: 0 auto;
+    }
+
+
+    .nxt-courseHero__title {
+        color: #FFFFFF;
+        font-family: 'Luckiest Guy', cursive;
+        font-weight: 400;
+        font-size: 64px;
+        line-height: 120%;
+        margin: 0 0 10px;
+    }
+
+    .nxt-courseHero__description {
+        color: #FFFFFF;
+        font-family: 'Comic Neue', cursive;
+        font-weight: 700;
+        font-size: 28px;
+        line-height: 120%;
+    }
+
+    .nxt-courseHero__image {
+        max-width: 422px;
+        width: 100%;
+        flex-shrink: 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    .nxt-courseHero__image img {
+        margin-bottom: -34px;
+        max-width: 100%;
+        width: 100%;
+        object-fit: contain;
+    }
+
+    @media (max-width: 1024px) {
+        .nxt-courseHero__container {
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+        }
+    }
+    @media (max-width: 767px) {
+        .nxt-allCourses__hero {
+            padding-top: 40px;
+        }
+        .nxt-courseHero__title {
+            font-size: 34px;
+        }
+        .nxt-courseHero__description {
+            font-size: 14px;
+        }
+    }
 {%- endstyle -%}
 
-<div class="collection-hero{% if section.settings.show_collection_image and collection.image %} collection-hero--with-image{% endif %} color-{{ section.settings.color_scheme }} gradient">
-  <div class="collection-hero__inner page-width {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
-    <div class="collection-hero__text-wrapper">
-      <h1 class="collection-hero__title">
+<div class="nxt-allCourses__hero {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
+  <div class="nxt-courseHero__container">
+    <div class="nxt-courseHero__content">
+      <h1 class="nxt-courseHero__title">
         <span class="visually-hidden">{{ 'sections.collection_template.title' | t }}: </span>
         {{- collection.title | escape -}}
       </h1>
-
       {%- if section.settings.show_collection_description -%}
-        <div class="collection-hero__description rte">{{ collection.description }}</div>
+        <div class="nxt-courseHero__description rte">
+          {% if collection.description != blank %}
+            {{ collection.description }}
+          {% else %}
+            {{ section.settings.description }}
+          {% endif %}
+        </div>
       {%- endif -%}
     </div>
-
-    {%- if section.settings.show_collection_image and collection.image -%}
-      <div class="collection-hero__image-container media gradient">
+    <div class="nxt-courseHero__image">
+      {% if section.settings.hero_image != blank %}
         <img
-          srcset="
-            {%- if collection.image.width >= 165 -%}{{ collection.image | image_url: width: 165 }} 165w,{%- endif -%}
-            {%- if collection.image.width >= 360 -%}{{ collection.image | image_url: width: 360 }} 360w,{%- endif -%}
-            {%- if collection.image.width >= 535 -%}{{ collection.image | image_url: width: 535 }} 535w,{%- endif -%}
-            {%- if collection.image.width >= 750 -%}{{ collection.image | image_url: width: 750 }} 750w,{%- endif -%}
-            {%- if collection.image.width >= 1070 -%}{{ collection.image | image_url: width: 1070 }} 1070w,{%- endif -%}
-            {%- if collection.image.width >= 1500 -%}{{ collection.image | image_url: width: 1500 }} 1500w,{%- endif -%}
-            {{ collection.image | image_url }} {{ collection.image.width }}w
-          "
-          src="{{ collection.image | image_url: width: 750 }}"
-          sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 | divided_by: 2 }}px, (min-width: 750px) calc(50vw - 130px), calc(50vw - 55px)"
-          alt="{{ collection.image.alt | escape }}"
-          width="{{ collection.image.width }}"
-          height="{{ collection.image.height }}"
+          class="nxt-icon"
+          src="{{ section.settings.hero_image | image_url: width: 422 }}"
+          alt="all courses banner"
+          width="422"
+          height="auto"
         >
-      </div>
-    {%- endif -%}
+      {% else %}
+        <img
+          class="nxt-icon"
+          src="{{ 'all-courses-banner.png' | asset_url }}"
+          alt="all courses banner"
+          width="422"
+          height="auto"
+        >
+      {% endif %}
+    </div>
   </div>
 </div>
 
@@ -50,6 +118,22 @@
   "name": "t:sections.main-collection-banner.name",
   "class": "section",
   "settings": [
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_image",
+      "label": "Hero Image"
+    },
+    {
+      "type": "text",
+      "id": "description",
+      "label": "Description",
+      "default": "IXL offers more than 100 Reception maths skills and games to explore and learn! Not sure where to start? Go to your personalised Recommendations wall to find a skill that looks interesting, or select a skill plan that aligns to your textbook, national curriculum, or standardised test."
+    },
     {
       "type": "paragraph",
       "content": "t:sections.main-collection-banner.settings.paragraph.content"
@@ -61,10 +145,28 @@
       "label": "t:sections.main-collection-banner.settings.show_collection_description.label"
     },
     {
-      "type": "checkbox",
-      "id": "show_collection_image",
-      "default": false,
-      "label": "t:sections.main-collection-banner.settings.show_collection_image.label"
+      "type": "header",
+      "content": "Layout Settings"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Top Padding",
+      "default": 78
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Bottom Padding",
+      "default": 0
     },
     {
       "type": "color_scheme",

@@ -1,0 +1,870 @@
+<style>
+  .footer {
+      background: {{ section.settings.background_color }};
+      padding: 80px 0;
+      /* min-height: 887px; */
+      font-family: 'Inter', sans-serif;
+      line-height: 1.2;
+  }
+
+  .footer-container {
+      max-width: 1320px;
+      margin: 0 auto;
+      padding: 0 20px;
+  }
+
+  .contact-section {
+      border-bottom: 1.54px solid rgba(255, 255, 255, 0.10);
+      padding-bottom: 36px;
+      margin-bottom: 36px;
+  }
+
+  .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+  }
+
+  .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 26px;
+      min-height: 52px;
+  }
+
+  .contact-icon {
+      width: 52px;
+      height: 51px;
+      {% comment %} background: white; {% endcomment %}
+      border-radius: 50%;
+      position: relative;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+  }
+
+  .contact-info {
+      flex: 1;
+  }
+
+  .contact-main {
+      color: white;
+      font-size: 16.88px;
+      font-weight: 600;
+      line-height: 21.60px;
+      margin-bottom: 1px;
+  }
+
+  .contact-sub {
+      color: rgba(255, 255, 255, 0.30);
+      font-size: 15.25px;
+      font-weight: 400;
+      line-height: 19.20px;
+    letter-spacing: normal;
+  }
+
+  .content-section {
+      border-bottom: 1.54px solid rgba(255, 255, 255, 0.10);
+      padding-bottom: 36px;
+      margin-bottom: 36px;
+  }
+
+  .content-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 90px;
+      margin-bottom: 43px;
+  }
+
+  .content-column {
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+  }
+
+  .content-title {
+      color: white;
+      font-size: 21.66px;
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      line-height: 26.40px;
+      margin-bottom: 0;
+  }
+
+  .content-links {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+  }
+
+  .content-link {
+      color: rgba(255, 255, 255, 0.60);
+      font-size: 15.88px;
+      font-weight: 400;
+      line-height: 19.20px;
+      text-decoration: none;
+      transition: color 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+  }
+
+  .content-link:hover {
+      color: white;
+  }
+
+  .content-link svg {
+      width: 13px;
+      height: 13px;
+      opacity: 0.6;
+  }
+
+  .bottom-section {
+      display: flex;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 126px;
+      align-items: start;
+      justify-content: space-between;
+  }
+
+  .license-card {
+      border: 1px dashed rgba(217, 217, 217, 0.20);
+      border-radius: 12px;
+      height: 124px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 260px;
+      width: 100%;
+  }
+
+  .license-text {
+      color: white;
+      font-size: 17.02px;
+      font-weight: 600;
+      line-height: 21.60px;
+      z-index: 2;
+      position: relative;
+      padding: 20px;
+  }
+
+  .license-icon {
+      position: absolute;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(156deg, rgba(255, 255, 255, 0.37) 0%, rgba(255, 255, 255, 0.13) 100%);
+      border-radius: 8px;
+  }
+
+  .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 80px;
+  }
+
+  .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 31px;
+  }
+
+  .logo {
+      width: 77px;
+      height: 62px;
+      background: white;
+      border-radius: 4px;
+  }
+
+  .copyright {
+      color: rgba(255, 255, 255, 0.60);
+      font-size: 11.44px;
+      font-weight: 300;
+      line-height: 19.20px;
+      max-width: 444px;
+    letter-spacing: normal;
+  }
+
+  .social-links {
+      display: flex;
+      gap: 12px;
+  }
+
+  .social-link {
+      width: 48px;
+      height: 48px;
+      background: rgba(255, 255, 255, 0.10);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 0.3s ease;
+  }
+
+  .social-link:hover {
+      background: rgba(255, 255, 255, 0.20);
+  }
+
+  .social-icon {
+      {% comment %} width: 20px;
+      height: 20px;
+      fill: white; {% endcomment %}
+  }
+
+  .scroll-top {
+      width: 48px;
+      height: 48px;
+      background: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      margin-left: auto;
+  }
+
+  .scroll-top:hover {
+      background: #f0f0f0;
+  }
+
+  .scroll-icon {
+      width: 20px;
+      height: 18px;
+      background: {{ section.settings.background_color }};
+      clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+  }
+
+  /* Responsive Design */
+  @media (max-width: 1024px) {
+      .content-grid {
+          gap: 60px;
+      }
+
+      .bottom-section {
+          display: grid;
+          gap: 80px;
+      }
+  }
+
+  @media (max-width: 768px) {
+      .footer {
+          padding: 40px 0;
+      }
+
+      .contact-grid {
+          grid-template-columns: 1fr;
+          gap: 15px;
+      }
+
+      .content-grid {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 40px;
+      }
+
+      .bottom-section {
+          grid-template-columns: 1fr;
+          gap: 40px;
+      }
+
+      .footer-bottom {
+          flex-direction: column;
+          text-align: center;
+      }
+
+      .footer-logo {
+          flex-direction: column;
+          gap: 15px;
+      }
+      .scroll-top{
+          margin: auto;
+      }
+      .footer-bottom{
+          gap: 20px;
+      }
+  }
+
+  @media (max-width: 480px) {
+      .content-grid {
+          grid-template-columns: 1fr;
+      }
+
+      .contact-item {
+          flex-direction: column;
+          text-align: center;
+          gap: 15px;
+      }
+
+      .social-links {
+          justify-content: center;
+      }
+  }
+</style>
+
+<footer class="footer">
+  <div class="footer-container">
+    <!-- Contact Section -->
+    {% if section.blocks.size > 0 %}
+      <div class="contact-section">
+        <div class="contact-grid">
+          {% for block in section.blocks %}
+            {% case block.type %}
+              {% when 'contact_info' %}
+                <div class="contact-item" {{ block.shopify_attributes }}>
+                  {% if block.settings.icon_svg != blank %}
+                    <div class="contact-icon">
+                      {{ block.settings.icon_svg }}
+                    </div>
+                  {% endif %}
+                  <div class="contact-info">
+                    <div class="contact-main">{{ block.settings.main_text }}</div>
+                    <div class="contact-sub">{{ block.settings.sub_text }}</div>
+                  </div>
+                </div>
+            {% endcase %}
+          {% endfor %}
+        </div>
+      </div>
+    {% endif %}
+
+    <!-- Content Section -->
+    <div class="content-section">
+      <div class="content-grid">
+        {% for block in section.blocks %}
+          {% case block.type %}
+            {% when 'link_list' %}
+              <div class="content-column" {{ block.shopify_attributes }}>
+                <h3 class="content-title">{{ block.settings.title }}</h3>
+                <div class="content-links">
+                  {% for link in block.settings.menu.links %}
+                    <a href="{{ link.url }}" class="content-link">
+                      {{ link.title }}
+                      {% if link.title contains 'Souvenir' %}
+                        <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <g opacity="0.6" clip-path="url(#clip0_1_2567)">
+                              <g clip-path="url(#clip1_1_2567)">
+                                  <path d="M2.33014 10.0656L10.3422 2.14355" stroke="white" stroke-width="1.84615" />
+                                  <path d="M2.33014 2.14355H10.3422V10.5316" stroke="white" stroke-width="1.84615" />
+                              </g>
+                          </g>
+                          <defs>
+                              <clippath id="clip0_1_2567">
+                                  <rect width="12" height="12" fill="white" transform="translate(0.210022 0.100098)" />
+                              </clippath>
+                              <clippath id="clip1_1_2567">
+                                  <rect width="12" height="12" fill="white" transform="translate(0.210022 0.100098)" />
+                              </clippath>
+                          </defs>
+                        </svg>
+                      {% endif %}
+                    </a>
+                  {% endfor %}
+                </div>
+              </div>
+          {% endcase %}
+        {% endfor %}
+      </div>
+
+      <div class="bottom-section">
+        {% for block in section.blocks %}
+          {% case block.type %}
+            {% when 'bottom_link_list' %}
+              <div class="content-column" {{ block.shopify_attributes }}>
+                <h3 class="content-title">{{ block.settings.title }}</h3>
+                <div class="content-links">
+                  {% for link in block.settings.menu.links %}
+                    <a href="{{ link.url }}" class="content-link">{{ link.title }}</a>
+                  {% endfor %}
+                </div>
+              </div>
+          {% endcase %}
+        {% endfor %}
+
+        {% if section.settings.show_license_card %}
+          {% if section.settings.license_url != blank %}
+            <a
+              href="{{ section.settings.license_url }}"
+              class="license-card"
+              target="_blank"
+              rel="noopener"
+              style="text-decoration: none;"
+            >
+          {% else %}
+            <div class="license-card">
+          {% endif %}
+          <div class="license-text">
+            {{ section.settings.license_text | newline_to_br }}
+            <div style="margin-top: 20px;">
+              <svg width="13" height="12" viewBox="0 0 13 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g clip-path="url(#clip0_1_2643)">
+                    <g clip-path="url(#clip1_1_2643)">
+                        <g clip-path="url(#clip2_1_2643)">
+                            <path d="M2.57227 9.75842L10.5793 1.84131" stroke="white" stroke-width="1.845" />
+                            <path d="M2.57227 1.84131H10.5793V10.2241" stroke="white" stroke-width="1.845" />
+                        </g>
+                    </g>
+                </g>
+                <defs>
+                    <clippath id="clip0_1_2643">
+                        <rect width="12" height="11.07" fill="white" transform="translate(0.450317 0.260254)" />
+                    </clippath>
+                    <clippath id="clip1_1_2643">
+                        <rect width="12" height="11.07" fill="white" transform="translate(0.450317 0.260254)" />
+                    </clippath>
+                    <clippath id="clip2_1_2643">
+                        <rect width="11.9925" height="11.07" fill="white" transform="translate(0.454102 0.260254)" />
+                    </clippath>
+                </defs>
+              </svg>
+            </div>
+          </div>
+
+          <svg width="114" height="122" viewBox="0 0 114 122" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g clip-path="url(#clip0_1_2648)">
+            <g clip-path="url(#clip1_1_2648)">
+            <g clip-path="url(#clip2_1_2648)">
+            <mask id="mask0_1_2648" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="2" y="0" width="158" height="166">
+            <path d="M110.237 0.800131L2.35083 44.7759L51.6748 165.783L159.561 121.807L110.237 0.800131Z" fill="white"/>
+            </mask>
+            <g mask="url(#mask0_1_2648)">
+            <g opacity="0.45">
+            <path opacity="0.46" fill-rule="evenodd" clip-rule="evenodd" d="M56.8323 140.899C58.0028 142.067 59.754 142.586 61.459 142.104L126.012 123.85C128.522 123.14 129.982 120.53 129.272 118.02L106.935 39.0331L104.928 31.2973L104.431 29.1131C103.822 26.4435 101.079 24.8487 98.4581 25.6413L85.7143 29.4956L87.3706 30.0808C88.6427 30.5302 89.6619 31.5021 90.1711 32.7514L121.44 109.464C122.425 111.879 121.264 114.635 118.849 115.62L56.8323 140.899Z" fill="url(#paint0_linear_1_2648)"/>
+            <path d="M14.9134 50.5716C13.9288 48.156 15.0887 45.3995 17.5043 44.415L67.388 24.0818C68.4592 23.6452 69.6534 23.6168 70.744 24.0022L87.4163 29.892C88.6884 30.3415 89.7075 31.3134 90.2167 32.5627L121.486 109.275C122.471 111.69 121.31 114.447 118.895 115.432L56.7728 140.753C54.3573 141.738 51.6008 140.577 50.6163 138.162L14.9134 50.5716Z" fill="url(#paint1_linear_1_2648)"/>
+            </g>
+            <path d="M89.4173 30.5969L68.4983 23.6279L73.9147 36.9159L89.4173 30.5969Z" fill="url(#paint2_linear_1_2648)" fill-opacity="0.34"/>
+            <mask id="mask1_1_2648" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="26" y="32" width="78" height="78">
+            <path d="M81.4651 32.1541L26.2423 54.6636L48.7518 109.886L103.975 87.3769L81.4651 32.1541Z" fill="white"/>
+            </mask>
+            <g mask="url(#mask1_1_2648)">
+            <g opacity="0.56">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M71.6125 57.7926C70.4419 57.3911 69.2074 57.9144 68.5842 58.4235C68.8183 57.6631 69.7149 56.7521 70.0117 56.5651C70.2926 56.5567 71.2841 56.987 71.6125 57.7926ZM73.0972 53.549C71.297 50.7571 65.0555 55.6377 60.9774 55.8024C61.2688 56.7114 63.0068 57.6499 64.3315 57.719C63.1005 60.1357 62.7427 64.1395 64.0454 68.3216C62.0549 64.4198 59.0001 61.8071 56.4303 60.9399C57.3291 59.9643 57.917 58.0779 57.4887 57.2248C54.4577 59.9579 46.5827 60.8316 47.2462 64.0869C47.3876 64.7757 48.0942 65.6246 48.5425 65.7689C48.5196 65.5417 48.5613 64.7511 49.4847 64.2013C54.1525 61.4264 61.4141 67.3633 58.9236 71.9755C58.8858 72.0462 58.9532 72.1192 59.0304 72.0878L70.2665 67.5077C70.3428 67.4767 70.3399 67.3771 70.2644 67.3531C65.2584 65.7967 66.3005 56.4753 71.5783 55.1962C72.6233 54.9435 73.205 55.4799 73.3477 55.6583C73.5674 55.2416 73.4786 54.14 73.0972 53.549ZM71.4786 46.1174C71.2727 45.8683 74.1857 44.6724 74.9262 46.4893C75.4225 47.7066 73.9132 48.9942 74.4283 50.2578C74.668 50.8461 75.4799 51.0182 75.6751 50.9387C74.399 49.0937 76.6893 49.398 77.3456 49.5726C75.2369 47.2512 77.4876 46.3537 76.757 45.1931C76.2471 44.3819 74.4041 45.4409 73.518 45.2861C71.9455 45.0119 69.2187 42.5617 69.4872 46.014C71.9934 46.9542 71.9435 49.8625 69.6323 50.8046C69.6323 50.8046 69.7675 51.1728 69.8003 51.193C72.5023 49.9351 72.641 47.5267 71.4786 46.1174ZM41.3622 64.2399C41.7092 63.6563 43.134 61.8376 43.5125 64.0486C43.7067 63.9695 44.1668 63.2788 43.9271 62.6904C43.412 61.4268 41.4326 61.5612 40.9365 60.3439C40.1959 58.527 43.1145 57.3458 43.1417 57.6679C43.2965 59.4881 45.0794 61.1133 47.8907 60.1236C47.8992 60.0865 47.7386 59.7285 47.7386 59.7285C45.4283 60.6702 43.3596 58.6257 44.4933 56.2016C42.2719 53.5456 42.0349 57.2037 41.1022 58.499C40.5767 59.2293 38.5186 59.7602 38.7214 60.6969C39.0114 62.0375 41.2471 61.1059 41.3622 64.2399ZM51.2455 66.0944C51.8026 64.9887 53.0516 64.4997 53.8519 64.4285C53.1549 64.0478 51.875 64.024 51.5328 64.0974C51.3261 64.2877 50.9172 65.2887 51.2455 66.0944ZM55.8613 44.4913L53.8516 43.4073L53.1721 45.5874L55.2165 46.7568L55.8613 44.4913ZM65.5486 46.2971L64.12 45.527L63.6372 47.0762L65.0545 47.8204L65.5486 46.2971ZM86.9696 76.6602L85.2372 75.8774L84.5454 77.6482L86.2143 78.2743L86.9696 76.6602ZM49.4198 52.8714L47.9911 52.1014L47.5085 53.6505L48.9261 54.3945L49.4198 52.8714ZM48.9981 59.6725L52.5647 58.2186C55.5633 56.9964 56.1656 54.6142 55.9257 52.8593L58.9768 51.6156C60.0324 53.0381 62.1275 54.3205 65.1271 53.0979L68.6936 51.6441C68.6936 51.6441 68.9741 50.5473 68.9605 50.0663C68.9118 48.3354 67.9065 47.9284 66.8564 48.3565L65.9979 50.1348L64.1415 49.4635C63.0913 49.8915 62.6568 50.885 63.8321 52.1568C63.9822 52.3194 64.2694 52.5312 64.5334 52.7127C63.1974 53.0555 61.2303 52.8516 60.123 51.1484C60.123 51.1484 60.4553 49.2887 60.4463 48.5946C60.4122 46.099 58.9768 45.6584 57.402 46.3003L56.3386 49.5079L53.3357 47.9578C51.761 48.5997 51.0428 49.9181 52.7639 51.726C53.2415 52.2292 54.7804 53.3263 54.7804 53.3263C55.1782 55.3184 53.9146 56.8393 52.7197 57.5284C52.7823 57.2133 52.8387 56.8616 52.8321 56.6405C52.7825 54.91 51.7792 54.5023 50.7283 54.9308L49.8698 56.709L48.0129 56.038C46.9621 56.4663 46.5297 57.4589 47.7039 58.7311C48.0304 59.0843 48.9981 59.6725 48.9981 59.6725ZM90.3569 55.6471C89.8099 56.2746 86.5388 59.804 81.0814 61.2162C81.0349 60.9488 80.9796 60.6829 80.9156 60.4191C84.1917 58.6055 86.7535 56.8834 88.1347 55.1688C89.7087 53.2135 89.5016 50.1619 87.66 48.5799C87.6128 48.5404 87.5354 48.5612 87.516 48.6187C87.2162 49.4924 85.2408 54.7627 80.1549 58.2241C80.0236 57.9425 79.8804 57.6666 79.7258 57.3971C81.8091 54.7667 83.7332 51.93 84.3356 49.8079C85.2449 46.5999 83.805 43.5674 81.3507 42.7225C81.3253 42.7141 81.2975 42.717 81.2744 42.7305C81.2513 42.7439 81.235 42.7665 81.2298 42.7928C81.0407 43.9663 79.1961 54.7712 74.8303 60.8913C74.7772 60.9662 74.723 61.0404 74.6679 61.114C74.5408 61.2848 74.6113 61.5106 74.8075 61.5817C75.7356 61.9169 76.504 62.5965 76.8894 63.5421C77.5595 65.1861 76.8439 67.0719 75.2822 68.0544C74.4945 68.5678 73.2411 69.0228 71.8963 69.1158C71.836 69.1205 71.7951 69.178 71.8167 69.2314L73.9387 74.4372C73.9729 74.521 74.1093 74.4897 74.1068 74.3975C74.0529 72.2027 76.0456 70.9196 76.9892 70.5351C78.1567 72.4279 79.449 73.8631 80.606 74.4477C82.4889 75.3962 84.5754 74.5216 85.069 73.1341C85.077 73.111 85.0741 73.0858 85.0611 73.0653C85.0482 73.0447 85.0265 73.0313 85.0023 73.0286C84.3442 72.941 80.5294 72.3193 78.6716 69.51C78.8784 69.3311 79.0739 69.1394 79.2567 68.9361C80.9045 70.1582 82.9287 71.0197 84.3091 71.1014C86.6271 71.2368 88.2197 70.0623 88.4547 68.3848C88.4638 68.3254 88.4046 68.2802 88.3445 68.2985C87.1054 68.6924 82.9937 69.1428 80.3818 67.222C80.4963 66.9841 80.5992 66.7408 80.6899 66.493C82.8383 67.0678 85.6066 67.2215 87.3593 66.7687C89.4104 66.2394 91.3611 64.7243 90.4973 62.4525C90.4799 62.4072 90.4244 62.3867 90.3775 62.4089C89.7033 62.7324 85.2091 64.7953 81.1898 64.2614C81.2157 64.0009 81.2323 63.7395 81.2397 63.4779C81.2397 63.4779 86.638 62.6292 88.8156 61.294C90.9797 59.9676 91.6366 57.6928 90.5015 55.6583C90.4722 55.6082 90.3965 55.6016 90.3569 55.6471ZM48.2986 76.9042C48.487 77.0862 48.682 77.2613 48.8829 77.4294C46.3827 80.6196 41.7295 82.287 41.018 82.5278C40.9682 82.5449 40.9432 82.6003 40.9624 82.644C41.9335 84.8711 44.3867 84.591 46.2234 83.5356C47.7924 82.6344 49.6655 80.5887 50.7994 78.6762C51.0377 78.7896 51.2814 78.8918 51.5295 78.9822C51.0038 82.1816 47.7494 84.7339 46.5883 85.3184C46.5325 85.3477 46.5228 85.4208 46.5699 85.4573C47.9105 86.4925 49.8705 86.219 51.4342 84.5013C52.363 83.4785 53.2082 81.4474 53.5317 79.4218C53.8047 79.4389 54.0785 79.4393 54.3517 79.4229C54.987 82.7305 52.6938 85.8414 52.2847 86.3647C52.2694 86.3835 52.2634 86.4083 52.2685 86.432C52.2736 86.4557 52.2891 86.4758 52.3107 86.4867C53.6337 87.1336 55.7378 86.3001 56.4212 84.3055C56.8398 83.0788 56.7597 81.1494 56.2711 78.9799C57.2156 78.5948 59.5366 78.1195 61.0321 79.7264C61.0959 79.7939 61.2153 79.7209 61.1811 79.637L59.0592 74.4313C59.0376 74.3783 58.9671 74.3658 58.9207 74.4046C57.8945 75.2783 56.6795 75.8288 55.7582 76.012C53.9541 76.4019 52.1239 75.5537 51.4538 73.9099C51.0687 72.9648 51.1439 71.9401 51.5717 71.0523C51.6639 70.8644 51.5552 70.6541 51.3463 70.6204C51.2549 70.6065 51.1637 70.5916 51.0726 70.5756C43.6769 69.2523 34.8099 62.8202 33.8468 62.1093C33.8244 62.0937 33.7965 62.0885 33.7699 62.0952C33.7434 62.1017 33.721 62.1193 33.7085 62.1435C32.5471 64.4633 33.6361 67.6373 36.529 69.2949C38.4433 70.3912 41.8022 71.0745 45.1297 71.4993C45.2078 71.7998 45.2986 72.097 45.4018 72.3899C39.3503 73.4696 34.2589 71.0873 33.4265 70.6697C33.3704 70.6409 33.2988 70.6805 33.2937 70.7416C33.0851 73.1609 35.0696 75.4853 37.5599 75.7839C39.7463 76.0444 42.7823 75.4848 46.3925 74.4914C46.531 74.7248 46.6773 74.9535 46.8309 75.1773C41.9464 77.9796 37.1439 77.7461 36.3076 77.6794C36.2455 77.6742 36.1961 77.732 36.2117 77.7888C36.823 80.0364 38.8814 81.2025 41.3562 80.6384C43.8459 80.0712 48.2986 76.9042 48.2986 76.9042ZM86.8847 79.9186L84.5168 79.2445C83.9735 79.9611 83.722 80.8497 83.8396 81.7232C82.8211 82.3137 79.6127 82.8626 79.723 82.3143C81.1078 76.4831 77.5443 74.7996 74.6399 76.1581L75.8761 79.191C76.2732 80.1653 75.741 81.3028 74.6889 81.7316L72.6411 82.5664C71.1722 83.1651 70.815 85.0247 70.815 85.0247C70.815 85.0247 69.2595 83.9446 67.7905 84.5433L65.7429 85.3779C64.6898 85.8072 63.5159 85.365 63.1189 84.3909L61.8827 81.3581C58.8561 82.4171 57.483 86.1126 62.5507 89.3138C63.0086 89.6254 60.2619 91.5425 58.7724 91.948C58.2411 91.7145 57.6027 91.691 56.9988 91.9371C56.7421 92.0418 56.506 92.1912 56.3015 92.3782C56.3015 92.3782 48.5828 89.3956 48.4598 89.3858L48.4623 89.261C48.5392 88.5399 47.7903 88.0936 47.5015 88.2644C47.6847 87.6924 46.9406 85.8195 44.7839 86.1951C44.9948 86.5463 45.3362 87.2993 45.3362 87.2993C45.3362 87.2993 43.4721 87.0998 42.9937 88.1228C42.6432 89.1926 44.1669 90.253 44.1669 90.253C44.1669 90.253 43.3923 90.5908 42.9934 90.7154C44.3384 92.3931 46.1849 91.4828 46.4427 90.9385C46.5396 91.2527 47.4034 91.4053 47.8447 90.8208L48.0504 90.5934C48.12 90.635 55.6331 93.5291 55.6331 93.5291C55.5338 93.9993 55.5997 94.4999 55.8781 94.9487C56.3141 95.6497 57.199 96.0173 58.0706 95.8513C58.6858 95.7332 59.1757 95.4053 59.5027 94.9806L61.4817 95.7228C61.6565 95.7864 61.8591 95.7878 62.0466 95.6955C62.3888 95.5286 62.5366 95.1377 62.3772 94.8231C62.3059 94.6809 62.1791 94.5855 62.0362 94.5322C62.0031 94.5165 60.0186 93.7718 60.0186 93.7718C60.8697 92.4574 62.8468 90.9696 64.6856 90.2201C65.0085 90.0885 65.0495 89.7543 64.8296 89.533C63.1836 87.8784 64.3857 85.7037 66.7179 86.1245C67.735 86.3078 68.9677 86.9833 70.2732 88.4165C67.532 90.3881 64.538 93.9625 64.6639 96.4805C64.7132 97.4525 66.1682 98.2119 67.4561 97.9589C67.4791 97.9549 67.4994 97.9421 67.5128 97.9229C67.5262 97.9038 67.5314 97.8802 67.5272 97.8574C66.8096 94.3142 69.3642 90.4145 71.0435 89.2446C71.2372 89.4546 71.1742 89.3867 71.3678 89.5957C69.7404 91.3646 68.6023 94.1602 69.0137 96.7648C69.2013 97.9577 70.8211 98.4416 71.9373 98.3001C71.9934 98.2928 72.0289 98.2377 72.0119 98.188C70.978 95.1037 71.2707 92.0068 71.992 90.3585C72.1173 90.5723 72.235 90.7905 72.3446 91.0127C72.3446 91.0127 72.5041 94.9039 73.5132 97.3792C73.9827 98.5313 76.0298 98.6337 76.3295 98.6425C76.6011 98.4016 77.9916 96.8969 77.5222 95.7452C76.5131 93.2696 73.9073 90.3755 73.9073 90.3755C73.8307 90.1397 73.7626 89.9013 73.703 89.6608C75.3706 90.336 77.7452 92.3441 79.1612 95.2727C79.1732 95.2957 79.1948 95.3123 79.2202 95.3178C79.2456 95.3235 79.2722 95.3176 79.2929 95.3018C80.1916 94.6224 81.0101 93.1445 80.3114 92.1597C78.7838 90.0106 76.0167 88.8063 73.6164 88.6791C73.6078 88.3947 73.61 88.4872 73.6021 88.2015C75.6218 87.8636 80.1731 88.8668 82.1372 91.902C82.1645 91.9418 82.219 91.9519 82.259 91.9246C83.356 91.2056 83.867 89.6446 83.2211 88.916C81.5527 87.0266 76.9121 86.5642 73.5732 87.0709C73.5059 85.1332 73.9153 83.7882 74.5145 82.946C75.8868 81.0153 78.2667 81.7298 78.2465 84.0636C78.244 84.3757 78.5058 84.5864 78.8298 84.4543C80.9098 83.6065 83.7771 83.3098 85.2 83.8995C86.2425 84.6032 87.6921 84.7344 88.9893 84.0511C90.4635 83.2756 91.2474 81.6173 90.8418 80.1274C90.486 78.8225 89.3847 77.9694 88.1069 77.7807L86.8847 79.9186ZM69.9635 76.2517C70.5066 75.7549 71.5869 75.5373 71.9274 76.4702C72.0042 76.6821 72.2976 76.5623 72.2322 76.3408C71.8626 74.8867 70.7671 74.8713 69.8551 75.4309C69.5408 75.0073 69.2728 74.6342 68.9927 74.2705C68.7671 73.9755 68.4802 73.3662 68.8658 73.209C69.0737 73.1243 69.2262 73.7376 69.3084 73.9952C69.3805 74.2212 69.5136 74.3214 69.6946 74.2549C69.8078 74.2141 69.8892 74.016 69.9339 73.8884C70.2366 73.0304 69.969 72.0025 69.1219 71.7994C68.4125 71.628 67.159 72.4816 67.0108 73.1978C66.8673 73.0092 66.4525 72.7704 66.2598 72.6716C66.0721 72.5744 65.9976 72.4861 66.1201 72.2842C66.1771 72.187 66.3265 71.8371 66.2222 71.5812C66.1606 71.4299 65.9286 71.1986 65.5542 71.3512C65.2586 71.4717 65.0131 71.8092 65.1983 72.2634C65.2394 72.3644 65.3082 72.4624 65.421 72.5521C65.2218 72.5975 64.7197 72.8168 64.4853 72.987L72.0968 81.3568C72.9212 80.4301 73.3501 79.32 72.9993 78.4593C72.7003 77.7257 71.714 78.4115 71.4202 79.1986C70.8716 78.3376 70.3708 77.5401 69.8569 76.7513C69.7157 76.5335 69.8021 76.4004 69.9635 76.2517ZM62.1466 71.6445L63.7564 73.4287C63.1712 73.8462 62.3208 74.7411 62.5746 75.3638C62.9126 76.1929 64.6065 76.1319 65.432 75.7199C65.4668 75.9262 65.5843 76.0749 65.7797 76.1749C65.4704 76.301 64.9453 76.6822 64.8375 76.9657C64.2149 76.731 63.4458 76.8666 63.2137 77.2584C62.9808 77.6532 63.1481 78.0924 63.7012 78.4408C64.0857 78.6814 64.3148 78.9799 64.1996 79.487C65.2265 79.0685 64.3065 77.8935 64.709 77.7295C64.7612 78.0088 64.915 78.2938 65.1668 78.5769C65.3337 78.7652 65.3974 78.9214 65.3511 79.187C65.2347 79.8493 65.2129 81.2703 65.729 82.3372C65.3916 82.4725 65.187 82.4604 65.119 81.954C65.0938 81.7659 64.9385 81.6872 64.8841 81.9542C64.8239 82.2489 64.9106 82.6751 64.9795 82.8442C65.377 83.8193 66.6243 83.5398 66.9855 83.1521C68.7801 83.8684 71.1764 82.5054 71.8541 81.7435L62.4361 71.3883C62.2515 71.1955 61.9693 71.4383 62.1466 71.6445ZM66.0793 81.7337C65.7829 81.2703 66.1182 80.0892 66.657 78.8617C66.6968 79.5023 67.2103 80.4247 67.7184 80.6076C67.0722 80.8709 66.3541 81.3044 66.0793 81.7337Z" fill="url(#paint3_linear_1_2648)"/>
+            </g>
+            </g>
+            <path d="M53.1371 115.148L99.7892 96.1318" stroke="white" stroke-opacity="0.04" stroke-width="1.36415"/>
+            <path d="M55.5724 121.125L87.8702 107.96" stroke="white" stroke-opacity="0.04" stroke-width="1.36415"/>
+            </g>
+            </g>
+            </g>
+            </g>
+            <defs>
+            <linearGradient id="paint0_linear_1_2648" x1="78.1857" y1="29.3991" x2="89.634" y2="132.764" gradientUnits="userSpaceOnUse">
+            <stop stop-color="white" stop-opacity="0.37"/>
+            <stop offset="1" stop-color="white" stop-opacity="0.1"/>
+            </linearGradient>
+            <linearGradient id="paint1_linear_1_2648" x1="48.5652" y1="31.7542" x2="87.8336" y2="128.092" gradientUnits="userSpaceOnUse">
+            <stop stop-color="white" stop-opacity="0.37"/>
+            <stop offset="1" stop-color="white" stop-opacity="0.13"/>
+            </linearGradient>
+            <linearGradient id="paint2_linear_1_2648" x1="72.3348" y1="33.0403" x2="86.7302" y2="27.1725" gradientUnits="userSpaceOnUse">
+            <stop stop-color="white" stop-opacity="0.37"/>
+            <stop offset="1" stop-color="white" stop-opacity="0.1"/>
+            </linearGradient>
+            <linearGradient id="paint3_linear_1_2648" x1="26.8166" y1="63.9738" x2="106.335" y2="92.907" gradientUnits="userSpaceOnUse">
+            <stop stop-color="white" stop-opacity="0.74"/>
+            <stop offset="0.874117" stop-color="white" stop-opacity="0"/>
+            </linearGradient>
+            <clipPath id="clip0_1_2648">
+            <rect width="112.99" height="120.91" fill="white" transform="translate(0.380005 0.800293)"/>
+            </clipPath>
+            <clipPath id="clip1_1_2648">
+            <rect width="112.99" height="120.91" fill="white" transform="translate(0.380005 0.800293)"/>
+            </clipPath>
+            <clipPath id="clip2_1_2648">
+            <rect width="110.184" height="120.91" fill="white" transform="translate(1.78333 0.800293)"/>
+            </clipPath>
+            </defs>
+          </svg>
+
+          {% if section.settings.license_url != blank %}
+            </a>
+          {% else %}
+            </div>
+          {% endif %}
+        {% endif %}
+      </div>
+    </div>
+
+    <!-- Footer Bottom -->
+    <div class="footer-bottom">
+      <div class="footer-logo">
+        {% if section.settings.logo != blank %}
+          <img
+            src="{{ section.settings.logo | img_url: '100x40' }}"
+            alt="{{ shop.name }}"
+            width="100"
+            height="40"
+            loading="lazy"
+          >
+        {% else %}
+          <div class="logo"></div>
+        {% endif %}
+        <div class="copyright">
+          {{ section.settings.copyright_text | newline_to_br }}
+        </div>
+      </div>
+
+      {% if section.settings.show_social_links %}
+        <div class="social-links">
+          {% for block in section.blocks %}
+            {% case block.type %}
+              {% when 'social_link' %}
+                <a
+                  href="{{ block.settings.social_url }}"
+                  class="social-link"
+                  {{ block.shopify_attributes }}
+                  target="_blank"
+                  rel="noopener"
+                >
+                  {% if block.settings.social_platform == 'custom' and block.settings.social_icon_svg != blank %}
+                    {{ block.settings.social_icon_svg }}
+
+                  {% elsif block.settings.social_platform != 'custom' %}
+                    <div class="social-icon">
+                      {% case block.settings.social_platform %}
+                        {% when 'facebook' %}
+                          <svg
+                            width="20"
+                            height="20"
+                            viewBox="0 0 20 20"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path d="M18 10.061C18 5.582 14.418 2 10 2S2 5.582 2 10.061c0 4.418 3.582 8 8 8s8-3.582 8-8z" fill="currentColor"/>
+                            <path d="M13.5 7.5h-1.5v-1.5h-1.5v1.5h-1.5v1.5h1.5v3h1.5v-3h1.5v-1.5z" fill="white"/>
+                          </svg>
+                        {% when 'twitter' %}
+                          <svg
+                            width="20"
+                            height="20"
+                            viewBox="0 0 20 20"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" fill="currentColor"/>
+                          </svg>
+                        {% when 'instagram' %}
+                          <svg
+                            width="20"
+                            height="20"
+                            viewBox="0 0 20 20"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path d="M10 2c2.717 0 3.056.01 4.122.06 1.065.05 1.79.217 2.428.465.66.254 1.216.598 1.772 1.153.555.556.9 1.113 1.153 1.772.247.637.415 1.363.465 2.428.047 1.066.06 1.405.06 4.122 0 2.717-.01 3.056-.06 4.122-.05 1.065-.218 1.79-.465 2.428a4.883 4.883 0 01-1.153 1.772 4.915 4.915 0 01-1.772 1.153c-.637.247-1.363.415-2.428.465-1.066.047-1.405.06-4.122.06-2.717 0-3.056-.01-4.122-.06-1.065-.05-1.79-.218-2.428-.465a4.89 4.89 0 01-1.772-1.153 4.904 4.904 0 01-1.153-1.772c-.248-.637-.415-1.363-.465-2.428C2.013 13.056 2 12.717 2 10c0-2.717.01-3.056.06-4.122.05-1.066.217-1.79.465-2.428a4.88 4.88 0 011.153-1.772A4.897 4.897 0 015.45 2.525c.638-.248 1.362-.415 2.428-.465C8.944 2.013 9.283 2 12 2zm0 5a5 5 0 100 10 5 5 0 000-10zm0 8a3 3 0 110-6 3 3 0 010 6zm6.5-9.75a1.25 1.25 0 10-2.5 0 1.25 1.25 0 002.5 0z" fill="currentColor"/>
+                          </svg>
+                        {% when 'youtube' %}
+                          <svg
+                            width="20"
+                            height="20"
+                            viewBox="0 0 20 20"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path d="M19.615 3.184c-.203-.85-.854-1.501-1.704-1.704C16.336 1.1 10 1.1 10 1.1s-6.336 0-7.911.38c-.85.203-1.501.854-1.704 1.704C0 4.759 0 10 0 10s0 5.241.385 6.816c.203.85.854 1.501 1.704 1.704C3.664 18.9 10 18.9 10 18.9s6.336 0 7.911-.38c.85-.203 1.501-.854 1.704-1.704C20 15.241 20 10 20 10s0-5.241-.385-6.816zM8 13.5V6.5l5.25 3.5L8 13.5z" fill="currentColor"/>
+                          </svg>
+                        {% when 'linkedin' %}
+                          <svg
+                            width="20"
+                            height="20"
+                            viewBox="0 0 20 20"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path d="M16.338 16.338H13.67V12.16c0-.995-.017-2.277-1.387-2.277-1.39 0-1.601 1.086-1.601 2.207v4.248H8.014v-8.59h2.559v1.174h.037c.356-.675 1.227-1.387 2.526-1.387 2.703 0 3.203 1.778 3.203 4.092v4.711zM5.005 6.575a1.548 1.548 0 11-.003-3.096 1.548 1.548 0 01.003 3.096zm-1.337 9.763H6.34v-8.59H3.667v8.59zM17.668 1H2.328C1.595 1 1 1.581 1 2.298v15.403C1 18.418 1.595 19 2.328 19h15.34c.734 0 1.332-.582 1.332-1.299V2.298C19 1.581 18.402 1 17.668 1z" fill="currentColor"/>
+                          </svg>
+                        {% when 'tiktok' %}
+                          <svg
+                            width="20"
+                            height="20"
+                            viewBox="0 0 20 20"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path d="M16.6 5.82s.51.5 0 0A4.278 4.278 0 015.8 4.25H8.26a2.15 2.15 0 002.15 2.15v2.75a5.55 5.55 0 00-1-.05A5.74 5.74 0 003.7 15.4a5.66 5.66 0 001.75.28 5.73 5.73 0 005.73-5.73V8.5a8.18 8.18 0 004.3 1.22V6.4a5.89 5.89 0 01-1.9-.31z" fill="currentColor"/>
+                          </svg>
+                        {% when 'telegram' %}
+                          <svg
+                            width="20"
+                            height="20"
+                            viewBox="0 0 20 20"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path d="M18.384 1.738c-.857-.857-2.226-.857-3.083 0L1.738 15.301c-.857.857-.857 2.226 0 3.083.857.857 2.226.857 3.083 0L18.384 4.821c.857-.857.857-2.226 0-3.083zM8.5 11.5l-2-2 8-8 2 2-8 8z" fill="currentColor"/>
+                          </svg>
+                        {% when 'vk' %}
+                          <svg
+                            width="20"
+                            height="20"
+                            viewBox="0 0 20 20"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path d="M15.07 2H4.93C3.31 2 2 3.31 2 4.93v10.14C2 16.69 3.31 18 4.93 18h10.14c1.62 0 2.93-1.31 2.93-2.93V4.93C18 3.31 16.69 2 15.07 2zM13.5 14.5h-1.5v-4.5h-1.5v4.5h-1.5v-4.5h-1.5v4.5H6.5v-6h1.5v1.5h1.5V8.5h1.5v1.5h1.5V8.5h1.5v6z" fill="currentColor"/>
+                          </svg>
+                      {% endcase %}
+                    </div>
+                  {% else %}
+                    <div class="social-icon"></div>
+                  {% endif %}
+                </a>
+            {% endcase %}
+          {% endfor %}
+        </div>
+      {% endif %}
+
+      {% if section.settings.show_scroll_top %}
+        <div class="scroll-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+          <svg width="20" height="19" viewBox="0 0 20 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g clip-path="url(#clip0_1_2714)">
+            <g clip-path="url(#clip1_1_2714)">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M8.74246 5.32112L2.29477 11.769L0.598633 10.0729L9.92714 0.744141L19.2558 10.0728L17.5596 11.7689L11.1411 5.35036V17.5156H8.74246V5.32112Z" fill="#05203E"/>
+            </g>
+            </g>
+            <defs>
+            <clipPath id="clip0_1_2714">
+            <rect width="20" height="17.99" fill="white" transform="translate(0 0.470215)"/>
+            </clipPath>
+            <clipPath id="clip1_1_2714">
+            <rect width="19.9889" height="17.99" fill="white" transform="translate(0.00585938 0.470215)"/>
+            </clipPath>
+            </defs>
+          </svg>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "SA Footer",
+  "settings": [
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#041D38"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Footer Logo"
+    },
+    {
+      "type": "textarea",
+      "id": "copyright_text",
+      "label": "Copyright Text",
+      "default": "© InternetUrok, 2009-2025\n© INTERDA LLC INN 7715706679, 2014-2025\nLegal address: 125375, Moscow, inner territory of the city, Presnensky municipal district,\nB. Gnezdnikovsky lane, 1, building 2, floor 5, office 5,6\nOKVED 62.01 (Development of computer software)"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_license_card",
+      "label": "Show License Card",
+      "default": true
+    },
+    {
+      "type": "textarea",
+      "id": "license_text",
+      "label": "License Card Text",
+      "default": "State\nlicense"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_social_links",
+      "label": "Show Social Links",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_scroll_top",
+      "label": "Show Scroll to Top Button",
+      "default": true
+    },
+    {
+      "type": "url",
+      "id": "license_url",
+      "label": "License Card URL"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "contact_info",
+      "name": "Contact Information",
+      "settings": [
+        {
+          "type": "html",
+          "id": "icon_svg",
+          "label": "Icon SVG Code",
+          "info": "Paste your SVG icon code here. Recommended size: 20x20px. Example: <svg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M2 3h16v14H2V3zm2 2v10h12V5H4z' fill='currentColor'/></svg>"
+        },
+        {
+          "type": "text",
+          "id": "main_text",
+          "label": "Main Text",
+          "default": "8 (800) 775 4121"
+        },
+        {
+          "type": "text",
+          "id": "sub_text",
+          "label": "Sub Text",
+          "default": "free in Russia"
+        }
+      ]
+    },
+    {
+      "type": "link_list",
+      "name": "Link List",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "School \"InternetUrok\""
+        },
+        {
+          "type": "link_list",
+          "id": "menu",
+          "label": "Menu"
+        }
+      ]
+    },
+    {
+      "type": "bottom_link_list",
+      "name": "Bottom Link List",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "For preschoolers"
+        },
+        {
+          "type": "link_list",
+          "id": "menu",
+          "label": "Menu"
+        }
+      ]
+    },
+    {
+      "type": "social_link",
+      "name": "Social Media Link",
+      "settings": [
+        {
+          "type": "url",
+          "id": "social_url",
+          "label": "Social Media URL"
+        },
+        {
+          "type": "select",
+          "id": "social_platform",
+          "label": "Social Platform",
+          "options": [
+            {
+              "value": "custom",
+              "label": "Custom SVG"
+            },
+            {
+              "value": "facebook",
+              "label": "Facebook"
+            },
+            {
+              "value": "twitter",
+              "label": "Twitter/X"
+            },
+            {
+              "value": "instagram",
+              "label": "Instagram"
+            },
+            {
+              "value": "youtube",
+              "label": "YouTube"
+            },
+            {
+              "value": "linkedin",
+              "label": "LinkedIn"
+            },
+            {
+              "value": "tiktok",
+              "label": "TikTok"
+            },
+            {
+              "value": "telegram",
+              "label": "Telegram"
+            },
+            {
+              "value": "vk",
+              "label": "VKontakte"
+            }
+          ],
+          "default": "custom"
+        },
+        {
+          "type": "html",
+          "id": "social_icon_svg",
+          "label": "Custom Social Icon SVG Code",
+          "info": "Paste your custom SVG icon code here. Recommended size: 20x20px, white color. Only used when 'Custom SVG' is selected above."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "SA Footer",
+      "blocks": [
+        {
+          "type": "contact_info"
+        },
+        {
+          "type": "contact_info"
+        },
+        {
+          "type": "contact_info"
+        },
+        {
+          "type": "contact_info"
+        },
+        {
+          "type": "link_list"
+        },
+        {
+          "type": "link_list"
+        },
+        {
+          "type": "link_list"
+        },
+        {
+          "type": "link_list"
+        },
+        {
+          "type": "bottom_link_list"
+        },
+        {
+          "type": "bottom_link_list"
+        },
+        {
+          "type": "bottom_link_list"
+        },
+        {
+          "type": "social_link"
+        },
+        {
+          "type": "social_link"
+        },
+        {
+          "type": "social_link"
+        },
+        {
+          "type": "social_link"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

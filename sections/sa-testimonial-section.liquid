@@ -1,0 +1,806 @@
+<style>
+  .testimonials-section {
+      max-width: 100%;
+      margin: 0 auto;
+      position: relative;
+      min-height: 100vh;
+      background: linear-gradient({{ section.settings.gradient_angle }}deg, {{ section.settings.gradient_color_1 }} 1%, {{ section.settings.gradient_color_2 }} 66%);
+      padding: {{ section.settings.padding_top }}px 20px {{ section.settings.padding_bottom }}px;
+      overflow: hidden;
+  }
+
+  .testimonials-section .background-decoration {
+      width: 100%;
+      pointer-events: none;
+  }
+  .testimonials-section  .background-decoration svg{
+      position: absolute;
+      /* left: 50%; */
+      top: 0;
+      /* width: 100%; */
+  }
+
+  .testimonials-section .testimonials-container {
+      max-width: 1374px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 48px;
+  }
+
+  .testimonials-section  .testimonials-title {
+      text-align: center;
+      color: white;
+      font-size: 52px;
+      font-family: 'Luckiest Guy', cursive;
+      font-weight: 400;
+      line-height: 62.40px;
+      word-wrap: break-word;
+  }
+
+  .testimonials-section  .testimonials-carousel {
+      width: 100%;
+      position: relative;
+  }
+
+  .testimonials-section .srs-swiper {
+      max-width: 1250px;
+      width: 100%;
+  }
+
+  .testimonials-section   .swiper-slide {
+      height: auto;
+  }
+
+  .testimonials-section  .carousel-button {
+      width: 48px;
+      height: 48px;
+      background: white;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      transition: all 0.3s ease;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 10;
+  }
+
+  .testimonials-section  .carousel-button:hover {
+      background: #f0f0f0;
+      transform: translateY(-50%) scale(1.05);
+  }
+
+  .testimonials-section  .carousel-button.prev {
+      left: 0;
+  }
+
+  .testimonials-section  .carousel-button.next {
+      right: 0;
+  }
+
+  .testimonials-section  .carousel-arrow {
+      width: 19.67px;
+      height: 11.59px;
+      background: black;
+      clip-path: polygon(0 50%, 100% 0, 100% 100%);
+  }
+
+  .testimonials-section  .carousel-button.prev .carousel-arrow {
+      transform: rotate(180deg);
+  }
+
+  .testimonials-section  .testimonial-card {
+      background: white;
+      border-radius: 10px;
+      outline: 1px dashed #1B1B1B;
+      outline-offset: -1px;
+      padding: 33.92px 29.34px;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+  }
+
+  .testimonials-section  .testimonial-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      /* gap: 126px; */
+  }
+
+  .testimonials-section  .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+  }
+
+  .testimonials-section  .author-name {
+      color: #0E2A46;
+      font-size: 21px;
+      font-weight: 700;
+      line-height: 18.70px;
+  }
+
+  .testimonials-section  .testimonial-rating {
+      display: flex;
+      gap: 5.11px;
+  }
+
+  .testimonials-section  .star {
+      width: 17.06px;
+      height: 17.03px;
+      background: #FF4F00;
+      clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+  }
+
+  .testimonials-section  .testimonial-text {
+      color: #333931;
+      font-size: 17px;
+      font-weight: 400;
+      line-height: 32.30px;
+      flex: 1;
+      display: flex;
+      align-items: center;
+  }
+
+  .testimonials-section  .content-sections {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      width: 100%;
+      max-width: 1250px;
+  }
+
+  .testimonials-section  .hero-image {
+      width: 100%;
+      height: 420px;
+      background: linear-gradient(0deg, rgba(0, 0, 0, 0.20) 0%, rgba(0, 0, 0, 0.20) 100%);
+      border-radius: 8px;
+      position: relative;
+      overflow: hidden;
+  }
+
+  .hero-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+  }
+
+  .testimonials-section  .hero-video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: none;
+  }
+
+  .testimonials-section  .play-button {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 96px;
+      height: 99.08px;
+      background: white;
+      border-radius: 48.77px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      z-index: 10;
+  }
+
+  .testimonials-section  .play-button:hover {
+      transform: translate(-50%, -50%) scale(1.1);
+  }
+
+  .testimonials-section  .play-button.playing {
+      opacity: 0;
+      pointer-events: none;
+  }
+
+  .testimonials-section  .play-icon {
+      width: 38.71px;
+      height: 38.71px;
+      background: #05203E;
+      clip-path: polygon(0 0, 0 100%, 100% 50%);
+  }
+
+  /* Responsive Design */
+  @media (max-width: 1280px) {
+      .testimonials-section {
+          padding: 60px 15px;
+      }
+
+      .testimonials-section  .testimonials-title {
+          font-size: 42px;
+          line-height: 50px;
+      }
+
+      .testimonials-section  .testimonial-card {
+          height: 240px;
+          padding: 25px 20px;
+      }
+
+      .testimonials-section  .testimonial-header {
+          gap: 80px;
+      }
+
+      .testimonials-section  .author-name {
+          font-size: 18px;
+      }
+
+      .testimonials-section  .testimonial-text {
+          font-size: 15px;
+          line-height: 28px;
+      }
+  }
+
+  @media (max-width: 768px) {
+      .testimonials-section {
+          padding: 40px 10px;
+      }
+
+      .testimonials-section  .testimonials-title {
+          font-size: 32px;
+          line-height: 38px;
+      }
+
+      .testimonials-section  .srs-swiper {
+          padding: 0 50px;
+      }
+
+      .testimonials-section  .carousel-button {
+          width: 40px;
+          height: 40px;
+      }
+
+      .testimonials-section  .testimonial-card {
+          height: 220px;
+          padding: 20px 15px;
+      }
+
+      .testimonials-section  .testimonial-header {
+          gap: 60px;
+      }
+
+      .testimonials-section  .author-name {
+          font-size: 16px;
+      }
+
+      .testimonials-section  .testimonial-text {
+          font-size: 14px;
+          line-height: 24px;
+      }
+
+      .testimonials-section  .content-section {
+          height: 300px;
+      }
+
+      .testimonials-section  .hero-image {
+          height: 400px;
+      }
+
+      .testimonials-section  .play-button {
+          width: 80px;
+          height: 80px;
+      }
+
+      .testimonials-section  .play-icon {
+          width: 30px;
+          height: 30px;
+      }
+  }
+
+  @media (max-width: 480px) {
+      .testimonials-section  .testimonials-title {
+          font-size: 28px;
+          line-height: 32px;
+      }
+
+      .testimonials-section  .srs-swiper {
+          padding: 0 40px;
+          overflow: hidden;
+      }
+
+      .testimonials-section  .testimonial-card {
+          height: 200px;
+          padding: 15px 12px;
+      }
+
+      .testimonials-section  .testimonial-header {
+          gap: 40px;
+      }
+
+      .testimonials-section  .author-name {
+          font-size: 14px;
+      }
+
+      .testimonials-section  .testimonial-text {
+          font-size: 13px;
+          line-height: 20px;
+      }
+
+      .testimonials-section  .content-section {
+          height: 250px;
+      }
+
+      .testimonials-section  .hero-image {
+          height: 300px;
+      }
+  }
+</style>
+<div class="testimonials-section">
+  <div class="background-decoration">
+    <svg
+      width="100%"
+      height="494"
+      viewBox="0 0 100% 494"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+          d="M-1032 490.955C-992.121 490.955 -439.486 -466.761 -8.6438 -76.522C153.347 130.614 246.687 273.421 426.427 352.232C510.37 389.038 910.956 427.842 844.186 195.856C788.974 57.6047 585.569 262.703 627.899 367.265C683.887 505.563 995.286 470.989 1335.08 212.76C1674.89 -45.4697 1689.68 -65.734 1931.16 -152.49C2321.04 -292.563 2873 90.5657 2873 90.5657"
+          stroke="url(#paint0_linear_1_2410)" stroke-opacity="0.4"
+          stroke-width="5" stroke-linecap="round" />
+      <defs>
+          <lineargradient id="paint0_linear_1_2410" x1="1133.16"
+              y1="177.161" x2="85.2368" y2="300.584"
+              gradientUnits="userSpaceOnUse">
+              <stop stop-color="#FBF8EE" />
+              <stop offset="1" stop-color="#FBF8EE"
+                  stop-opacity="0" />
+          </lineargradient>
+      </defs>
+    </svg>
+  </div>
+  <div class="testimonials-container">
+    <div class="testimonials-title">{{ section.settings.section_title }}</div>
+
+    <div class="testimonials-carousel">
+      <div class="srs-swiper swiper testimonials-swiper">
+        <div class="swiper-wrapper">
+          {% for block in section.blocks %}
+            {% if block.type == 'testimonial' %}
+              <div class="swiper-slide" {{ block.shopify_attributes }}>
+                <div class="testimonial-card">
+                  <div class="testimonial-header">
+                    <div class="testimonial-author">
+                      {% if block.settings.author_image %}
+                        <img
+                          src="{{ block.settings.author_image | image_url: width: 50 }}"
+                          alt="{{ block.settings.author_name }}"
+                          width="50"
+                          height="50"
+                          style="border-radius: 50%; object-fit: cover;"
+                        >
+                      {% endif %}
+                      <div class="author-name">
+                        {% if block.settings.author_link %}
+                          <a
+                            href="{{ block.settings.author_link }}"
+                            target="_blank"
+                            style="color: inherit; text-decoration: none;"
+                          >
+                            {{ block.settings.author_name }}
+                          </a>
+                        {% else %}
+                          {{ block.settings.author_name }}
+                        {% endif %}
+                      </div>
+                      {% if block.settings.author_title %}
+                        <div class="author-title" style="font-size: 14px; color: #666; margin-top: 2px;">
+                          {{ block.settings.author_title }}
+                        </div>
+                      {% endif %}
+                    </div>
+                    <div class="testimonial-rating">
+                      {% assign rating = block.settings.rating %}
+                      <svg width="107" height="18" viewBox="0 0 107 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        {% if rating >= 1 %}
+                            <path d="M16.945 7.00949L11.7012 6.20848L9.35073 1.20202C9.17518 0.828168 8.56181 0.828168 8.38625 1.20202L6.03654 6.20848L0.792692 7.00949C0.361983 7.07559 0.189983 7.5994 0.492048 7.90858L4.30162 11.8134L3.40111 17.3337C3.32933 17.7722 3.79771 18.1013 4.18506 17.886L8.86885 15.2974L13.5526 17.8867C13.9364 18.0999 14.4091 17.7772 14.3366 17.3344L13.4361 11.8141L17.2456 7.90929C17.5477 7.5994 17.375 7.07559 16.945 7.00949Z" fill="#FF4F00"/>
+                        {% else %}
+                            <path d="M16.945 7.00949L11.7012 6.20848L9.35073 1.20202C9.17518 0.828168 8.56181 0.828168 8.38625 1.20202L6.03654 6.20848L0.792692 7.00949C0.361983 7.07559 0.189983 7.5994 0.492048 7.90858L4.30162 11.8134L3.40111 17.3337C3.32933 17.7722 3.79771 18.1013 4.18506 17.886L8.86885 15.2974L13.5526 17.8867C13.9364 18.0999 14.4091 17.7772 14.3366 17.3344L13.4361 11.8141L17.2456 7.90929C17.5477 7.5994 17.375 7.07559 16.945 7.00949Z" fill="#E0E0E0"/>
+                        {% endif %}
+                        {% if rating >= 2 %}
+                            <path d="M39.1164 7.00924L33.8725 6.20824L31.5221 1.20177C31.3466 0.827924 30.7332 0.827924 30.5576 1.20177L28.2079 6.20824L22.9641 7.00924C22.5334 7.07534 22.3614 7.59916 22.6634 7.90833L26.473 11.8131L25.5725 17.3335C25.5007 17.772 25.9691 18.1011 26.3564 17.8857L31.0402 15.2972L35.724 17.8864C36.1078 18.0997 36.5805 17.777 36.508 17.3342L35.6075 11.8139L39.417 7.90904C39.7191 7.59916 39.5464 7.07534 39.1164 7.00924Z" fill="#FF4F00"/>
+                        {% else %}
+                            <path d="M39.1164 7.00924L33.8725 6.20824L31.5221 1.20177C31.3466 0.827924 30.7332 0.827924 30.5576 1.20177L28.2079 6.20824L22.9641 7.00924C22.5334 7.07534 22.3614 7.59916 22.6634 7.90833L26.473 11.8131L25.5725 17.3335C25.5007 17.772 25.9691 18.1011 26.3564 17.8857L31.0402 15.2972L35.724 17.8864C36.1078 18.0997 36.5805 17.777 36.508 17.3342L35.6075 11.8139L39.417 7.90904C39.7191 7.59916 39.5464 7.07534 39.1164 7.00924Z" fill="#E0E0E0"/>
+                        {% endif %}
+                        {% if rating >= 3 %}
+                            <path d="M61.2878 7.00924L56.0439 6.20824L53.6935 1.20177C53.518 0.827924 52.9046 0.827924 52.729 1.20177L50.3793 6.20824L45.1355 7.00924C44.7048 7.07534 44.5328 7.59916 44.8348 7.90833L48.6444 11.8131L47.7439 17.3335C47.6721 17.772 48.1405 18.1011 48.5278 17.8857L53.2116 15.2972L57.8954 17.8864C58.2792 18.0997 58.7519 17.777 58.6794 17.3342L57.7788 11.8139L61.5884 7.90904C61.8905 7.59916 61.7178 7.07534 61.2878 7.00924Z" fill="#FF4F00"/>
+                        {% else %}
+                            <path d="M61.2878 7.00924L56.0439 6.20824L53.6935 1.20177C53.518 0.827924 52.9046 0.827924 52.729 1.20177L50.3793 6.20824L45.1355 7.00924C44.7048 7.07534 44.5328 7.59916 44.8348 7.90833L48.6444 11.8131L47.7439 17.3335C47.6721 17.772 48.1405 18.1011 48.5278 17.8857L53.2116 15.2972L57.8954 17.8864C58.2792 18.0997 58.7519 17.777 58.6794 17.3342L57.7788 11.8139L61.5884 7.90904C61.8905 7.59916 61.7178 7.07534 61.2878 7.00924Z" fill="#E0E0E0"/>
+                        {% endif %}
+                        {% if rating >= 4 %}
+                            <path d="M83.4592 7.00924L78.2153 6.20824L75.8649 1.20177C75.6893 0.827924 75.076 0.827924 74.9004 1.20177L72.5507 6.20824L67.3069 7.00924C66.8761 7.07534 66.7041 7.59916 67.0062 7.90833L70.8158 11.8131L69.9153 17.3335C69.8435 17.772 70.3119 18.1011 70.6992 17.8857L75.383 15.2972L80.0668 17.8864C80.4506 18.0997 80.9232 17.777 80.8507 17.3342L79.9502 11.8139L83.7598 7.90904C84.0619 7.59916 83.8892 7.07534 83.4592 7.00924Z" fill="#FF4F00"/>
+                        {% else %}
+                            <path d="M83.4592 7.00924L78.2153 6.20824L75.8649 1.20177C75.6893 0.827924 75.076 0.827924 74.9004 1.20177L72.5507 6.20824L67.3069 7.00924C66.8761 7.07534 66.7041 7.59916 67.0062 7.90833L70.8158 11.8131L69.9153 17.3335C69.8435 17.772 70.3119 18.1011 70.6992 17.8857L75.383 15.2972L80.0668 17.8864C80.4506 18.0997 80.9232 17.777 80.8507 17.3342L79.9502 11.8139L83.7598 7.90904C84.0619 7.59916 83.8892 7.07534 83.4592 7.00924Z" fill="#E0E0E0"/>
+                        {% endif %}
+                        {% if rating >= 5 %}
+                            <path d="M105.631 7.00924L100.387 6.20824L98.0363 1.20177C97.8607 0.827924 97.2474 0.827924 97.0718 1.20177L94.7221 6.20824L89.4782 7.00924C89.0475 7.07534 88.8755 7.59916 89.1776 7.90833L92.9872 11.8131L92.0867 17.3335C92.0149 17.772 92.4833 18.1011 92.8706 17.8857L97.5544 15.2972L102.238 17.8864C102.622 18.0997 103.095 17.777 103.022 17.3342L102.122 11.8139L105.931 7.90904C106.233 7.59916 106.061 7.07534 105.631 7.00924Z" fill="#FF4F00"/>
+                        {% else %}
+                            <path d="M105.631 7.00924L100.387 6.20824L98.0363 1.20177C97.8607 0.827924 97.2474 0.827924 97.0718 1.20177L94.7221 6.20824L89.4782 7.00924C89.0475 7.07534 88.8755 7.59916 89.1776 7.90833L92.9872 11.8131L92.0867 17.3335C92.0149 17.772 92.4833 18.1011 92.8706 17.8857L97.5544 15.2972L102.238 17.8864C102.622 18.0997 103.095 17.777 103.022 17.3342L102.122 11.8139L105.931 7.90904C106.233 7.59916 106.061 7.07534 105.631 7.00924Z" fill="#E0E0E0"/>
+                        {% endif %}
+                      </svg>
+                    </div>
+                  </div>
+                  <div class="testimonial-text">"{{ block.settings.testimonial_text }}"</div>
+                </div>
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+
+      {% if section.settings.show_navigation %}
+        <button class="carousel-button prev">
+          <svg
+            width="21"
+            height="12"
+            viewBox="0 0 21 12"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+                d="M1.00097 5.44352C0.693695 5.7508 0.693695 6.24905 1.00097 6.55633L6.00871 11.5641C6.31599 11.8713 6.81417 11.8713 7.12152 11.5641C7.4288 11.2567 7.4288 10.7585 7.12152 10.4513L2.67019 5.99993L7.12152 1.54859C7.4288 1.24132 7.4288 0.743139 7.12152 0.435781C6.81417 0.128503 6.31599 0.128503 6.00871 0.435781L1.00097 5.44352ZM20.4426 5.21304H1.55738V6.78681H20.4426V5.21304Z"
+                fill="black" />
+          </svg>
+        </button>
+        <button class="carousel-button next">
+          <svg
+            width="21"
+            height="12"
+            viewBox="0 0 21 12"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+                d="M19.999 5.44352C20.3063 5.7508 20.3063 6.24905 19.999 6.55633L14.9913 11.5641C14.684 11.8713 14.1858 11.8713 13.8785 11.5641C13.5712 11.2567 13.5712 10.7585 13.8785 10.4513L18.3298 5.99993L13.8785 1.54859C13.5712 1.24132 13.5712 0.743139 13.8785 0.435781C14.1858 0.128503 14.684 0.128503 14.9913 0.435781L19.999 5.44352ZM0.557373 5.21304H19.4426V6.78681H0.557373V5.21304Z"
+                fill="black" />
+          </svg>
+        </button>
+      {% endif %}
+    </div>
+
+    {% if section.settings.show_hero_section %}
+      <div class="content-sections">
+        <div class="hero-image">
+          {% if section.settings.hero_image %}
+            <img
+              src="{{ section.settings.hero_image | image_url: width: 1200 }}"
+              alt="{{ section.settings.hero_image_alt }}"
+              width="1200"
+              height="600"
+            >
+          {% else %}
+            <img
+              src="https://placehold.co/1200x600"
+              alt="{{ section.settings.hero_image_alt }}"
+              width="1200"
+              height="600"
+            >
+          {% endif %}
+
+          {% if section.settings.hero_video_url %}
+            <video class="hero-video" controls>
+              <source src="{{ section.settings.hero_video_url }}" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+            <div class="play-button" id="playButton">
+              <svg width="39" height="40" viewBox="0 0 39 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g clip-path="url(#clip0_1_2470)">
+                <g clip-path="url(#clip1_1_2470)">
+                <path d="M35.6804 18.9207C36.3596 19.3128 36.3596 20.2929 35.6804 20.685L4.59326 38.6333C3.91414 39.0254 3.06525 38.5353 3.06525 37.7511L3.06525 1.85466C3.06525 1.07049 3.91414 0.580381 4.59326 0.972469L35.6804 18.9207Z" fill="#05203E"/>
+                </g>
+                </g>
+                <defs>
+                <clipPath id="clip0_1_2470">
+                <rect width="38.7097" height="38.7097" fill="white" transform="translate(0.275208 0.647949)"/>
+                </clipPath>
+                <clipPath id="clip1_1_2470">
+                <rect width="33.6163" height="38.7097" fill="white" transform="translate(2.82111 0.647949)"/>
+                </clipPath>
+                </defs>
+              </svg>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+      // Check if Swiper is available
+      if (typeof Swiper !== 'undefined') {
+          const swiper = new Swiper('.testimonials-swiper', {
+              slidesPerView: {{ section.settings.slides_per_view_desktop }},
+              spaceBetween: {{ section.settings.space_between }},
+              {% if section.settings.autoplay %}
+              autoplay: {
+                  delay: {{ section.settings.autoplay_speed | times: 1000 }},
+                  disableOnInteraction: false,
+              },
+              {% endif %}
+              navigation: {
+                  nextEl: '.carousel-button.next',
+                  prevEl: '.carousel-button.prev',
+              },
+              breakpoints: {
+                  320: {
+                      slidesPerView: {{ section.settings.slides_per_view_mobile }},
+                      spaceBetween: {{ section.settings.space_between }}
+                  },
+                  768: {
+                      slidesPerView: {{ section.settings.slides_per_view_tablet }},
+                      spaceBetween: {{ section.settings.space_between }}
+                  },
+                  1024: {
+                      slidesPerView: {{ section.settings.slides_per_view_desktop }},
+                      spaceBetween: {{ section.settings.space_between }}
+                  }
+              }
+          });
+      } else {
+          console.warn('Swiper library not loaded. Testimonials carousel will not function.');
+      }
+
+      // Video functionality
+      const playButton = document.getElementById('playButton');
+      const video = document.querySelector('.hero-video');
+      const heroImage = document.querySelector('.hero-image img');
+
+      if (playButton && video) {
+          playButton.addEventListener('click', function() {
+              if (video.paused) {
+                  // Start video
+                  video.play();
+                  video.style.display = 'block';
+                  heroImage.style.display = 'none';
+                  playButton.classList.add('playing');
+              } else {
+                  // Pause video
+                  video.pause();
+                  video.style.display = 'none';
+                  heroImage.style.display = 'block';
+                  playButton.classList.remove('playing');
+              }
+          });
+
+          // Show play button when video ends
+          video.addEventListener('ended', function() {
+              video.style.display = 'none';
+              heroImage.style.display = 'block';
+              playButton.classList.remove('playing');
+          });
+
+          // Show play button when video is paused
+          video.addEventListener('pause', function() {
+              if (!video.ended) {
+                  video.style.display = 'none';
+                  heroImage.style.display = 'block';
+                  playButton.classList.remove('playing');
+              }
+          });
+      }
+  });
+</script>
+
+{% schema %}
+{
+  "name": "SA Testimonials Section",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Settings"
+    },
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Section Title",
+      "default": "Testimonials"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 80
+    },
+    {
+      "type": "header",
+      "content": "Background Settings"
+    },
+    {
+      "type": "color",
+      "id": "gradient_color_1",
+      "label": "Gradient Color 1",
+      "default": "#F09E00"
+    },
+    {
+      "type": "color",
+      "id": "gradient_color_2",
+      "label": "Gradient Color 2",
+      "default": "#FF6A2B"
+    },
+    {
+      "type": "range",
+      "id": "gradient_angle",
+      "min": 0,
+      "max": 360,
+      "step": 4,
+      "unit": "deg",
+      "label": "Gradient Angle",
+      "default": 240
+    },
+    {
+      "type": "header",
+      "content": "Carousel Settings"
+    },
+    {
+      "type": "range",
+      "id": "slides_per_view_desktop",
+      "min": 1,
+      "max": 5,
+      "step": 1,
+      "label": "Slides Per View (Desktop)",
+      "default": 3
+    },
+    {
+      "type": "range",
+      "id": "slides_per_view_tablet",
+      "min": 1,
+      "max": 4,
+      "step": 1,
+      "label": "Slides Per View (Tablet)",
+      "default": 2
+    },
+    {
+      "type": "range",
+      "id": "slides_per_view_mobile",
+      "min": 1,
+      "max": 6,
+      "step": 1,
+      "label": "Slides Per View (Mobile)",
+      "default": 1
+    },
+    {
+      "type": "range",
+      "id": "space_between",
+      "min": 0,
+      "max": 50,
+      "step": 2,
+      "label": "Space Between Slides",
+      "default": 16
+    },
+    {
+      "type": "checkbox",
+      "id": "show_navigation",
+      "label": "Show Navigation Arrows",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "autoplay",
+      "label": "Enable Autoplay",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "autoplay_speed",
+      "min": 1,
+      "max": 10,
+      "step": 1,
+      "label": "Autoplay Speed (seconds)",
+      "default": 5
+    },
+    {
+      "type": "header",
+      "content": "Hero Content Settings"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_image",
+      "label": "Hero Image"
+    },
+    {
+      "type": "url",
+      "id": "hero_video_url",
+      "label": "Hero Video URL"
+    },
+    {
+      "type": "text",
+      "id": "hero_image_alt",
+      "label": "Hero Image Alt Text",
+      "default": "Hero Image"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_hero_section",
+      "label": "Show Hero Section",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "testimonial",
+      "name": "Testimonial",
+      "settings": [
+        {
+          "type": "text",
+          "id": "author_name",
+          "label": "Author Name",
+          "default": "Customer Name"
+        },
+        {
+          "type": "textarea",
+          "id": "testimonial_text",
+          "label": "Testimonial Text",
+          "default": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+        },
+        {
+          "type": "range",
+          "id": "rating",
+          "min": 1,
+          "max": 5,
+          "step": 1,
+          "label": "Rating",
+          "default": 5
+        },
+        {
+          "type": "image_picker",
+          "id": "author_image",
+          "label": "Author Image (Optional)"
+        },
+        {
+          "type": "text",
+          "id": "author_title",
+          "label": "Author Title/Position (Optional)"
+        },
+        {
+          "type": "url",
+          "id": "author_link",
+          "label": "Author Link (Optional)"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "SA Testimonials Section",
+      "blocks": [
+        {
+          "type": "testimonial"
+        },
+        {
+          "type": "testimonial"
+        },
+        {
+          "type": "testimonial"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

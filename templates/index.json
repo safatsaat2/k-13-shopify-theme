@@ -9,76 +9,163 @@
  */
 {
   "sections": {
-    "image_banner": {
-      "type": "image-banner",
+    "sa_testimonial_section_9YdabA": {
+      "type": "sa-testimonial-section",
       "blocks": {
-        "heading": {
-          "type": "heading",
+        "testimonial_84rfgt": {
+          "type": "testimonial",
           "settings": {
-            "heading": "Browse our latest products",
-            "heading_size": "h0"
+            "author_name": "Elsie Stroud",
+            "testimonial_text": "“Lorem ipsum dolor sit amet, elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Orcinulla pellentesque dignissim enim. Amet consectetur adipiscing”",
+            "rating": 5,
+            "author_title": "",
+            "author_link": ""
           }
         },
-        "button": {
-          "type": "buttons",
+        "testimonial_kUg9cD": {
+          "type": "testimonial",
           "settings": {
-            "button_label_1": "Shop all",
-            "button_link_1": "shopify://collections/all",
-            "button_style_secondary_1": true,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": false
+            "author_name": "Elsie Stroud",
+            "testimonial_text": "“Lorem ipsum dolor sit amet, elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Orcinulla pellentesque dignissim enim. Amet consectetur adipiscing”",
+            "rating": 5,
+            "author_title": "",
+            "author_link": ""
+          }
+        },
+        "testimonial_gHRYfD": {
+          "type": "testimonial",
+          "settings": {
+            "author_name": "Elsie Stroud",
+            "testimonial_text": "“Lorem ipsum dolor sit amet, elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Orcinulla pellentesque dignissim enim. Amet consectetur adipiscing”",
+            "rating": 5,
+            "author_title": "",
+            "author_link": ""
+          }
+        },
+        "testimonial_6rjU9e": {
+          "type": "testimonial",
+          "settings": {
+            "author_name": "Elsie Stroud",
+            "testimonial_text": "“Lorem ipsum dolor sit amet, elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Orcinulla pellentesque dignissim enim. Amet consectetur adipiscing”",
+            "rating": 5,
+            "author_title": "",
+            "author_link": ""
+          }
+        },
+        "testimonial_BXU4Kp": {
+          "type": "testimonial",
+          "settings": {
+            "author_name": "Elsie Stroud",
+            "testimonial_text": "“Lorem ipsum dolor sit amet, elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Orcinulla pellentesque dignissim enim. Amet consectetur adipiscing”",
+            "rating": 5,
+            "author_title": "",
+            "author_link": ""
           }
         }
       },
       "block_order": [
-        "heading",
-        "button"
+        "testimonial_84rfgt",
+        "testimonial_kUg9cD",
+        "testimonial_gHRYfD",
+        "testimonial_6rjU9e",
+        "testimonial_BXU4Kp"
       ],
+      "name": "SA Testimonials Section",
       "settings": {
-        "image_overlay_opacity": 40,
-        "image_height": "large",
-        "desktop_content_position": "bottom-center",
-        "show_text_box": false,
-        "image_behavior": "none",
-        "desktop_content_alignment": "center",
-        "color_scheme": "scheme-3",
-        "mobile_content_alignment": "center",
-        "stack_images_on_mobile": false,
-        "show_text_below": false
+        "section_title": "Testimonials",
+        "padding_top": 80,
+        "padding_bottom": 80,
+        "gradient_color_1": "#f09e00",
+        "gradient_color_2": "#ff6a2b",
+        "gradient_angle": 240,
+        "slides_per_view_desktop": 3,
+        "slides_per_view_tablet": 2,
+        "slides_per_view_mobile": 1,
+        "space_between": 16,
+        "show_navigation": true,
+        "autoplay": false,
+        "autoplay_speed": 5,
+        "hero_image": "shopify://shop_images/funny-little-child-from-elementary-school-writing-school-homework-home-education-kid-study-le_1.png",
+        "hero_video_url": "https://cdn.shopify.com/videos/c/o/v/27e4ececa003471e8814551b301f7597.mp4",
+        "hero_image_alt": "Hero Image",
+        "show_hero_section": true
       }
     },
-    "featured_collection": {
-      "type": "featured-collection",
+    "nxt_hero_area_wQAKDL": {
+      "type": "nxt-hero-area",
+      "blocks": {
+        "content_box_xazm7k": {
+          "type": "content_box",
+          "settings": {
+            "heading": "Comprehensive Curriculum",
+            "list_item_1": "Maths",
+            "list_item_2": "English",
+            "list_item_3": "Science"
+          }
+        },
+        "content_box_kwQ9Aw": {
+          "type": "content_box",
+          "settings": {
+            "heading": "Trusted by educators & parents",
+            "list_item_1": "160B+ questions answered by",
+            "list_item_2": "17M+ students on IXL.",
+            "list_item_3": ""
+          }
+        },
+        "content_box_GDxydd": {
+          "type": "content_box",
+          "settings": {
+            "heading": "Immersive learning experience",
+            "list_item_1": "Analytics",
+            "list_item_2": "Recommendations",
+            "list_item_3": ""
+          }
+        },
+        "button_rmqYjn": {
+          "type": "button",
+          "settings": {
+            "button_text": "Become a member!",
+            "button_link": "shopify://collections/all"
+          }
+        },
+        "image_xPpEpW": {
+          "type": "image",
+          "settings": {}
+        },
+        "image_LyUwrA": {
+          "type": "image",
+          "settings": {}
+        },
+        "image_RrCxaQ": {
+          "type": "image",
+          "settings": {}
+        },
+        "image_txa3UF": {
+          "type": "image",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "content_box_xazm7k",
+        "content_box_kwQ9Aw",
+        "content_box_GDxydd",
+        "button_rmqYjn",
+        "image_xPpEpW",
+        "image_LyUwrA",
+        "image_RrCxaQ",
+        "image_txa3UF"
+      ],
+      "name": "NXT Hero Area",
       "settings": {
-        "title": "Featured products",
-        "heading_size": "h2",
-        "description": "",
-        "show_description": false,
-        "description_style": "body",
-        "collection": "all",
-        "products_to_show": 8,
-        "columns_desktop": 4,
-        "color_scheme": "scheme-1",
-        "full_width": false,
-        "show_view_all": true,
-        "view_all_style": "solid",
-        "enable_desktop_slider": false,
-        "swipe_on_mobile": false,
-        "image_ratio": "adapt",
-        "image_shape": "default",
-        "show_secondary_image": true,
-        "show_vendor": false,
-        "show_rating": false,
-        "quick_add": "none",
-        "columns_mobile": "2",
-        "padding_top": 44,
-        "padding_bottom": 36
+        "heading": "IXL is personalised learning",
+        "padding_top": 68,
+        "padding_bottom": 0,
+        "color_scheme": ""
       }
     }
   },
   "order": [
-    "image_banner",
-    "featured_collection"
+    "nxt_hero_area_wQAKDL",
+    "sa_testimonial_section_9YdabA"
   ]
 }
