@@ -9,6 +9,193 @@
  */
 {
   "sections": {
+    "nxt_hero_area_wQAKDL": {
+      "type": "nxt-hero-area",
+      "blocks": {
+        "content_box_xazm7k": {
+          "type": "content_box",
+          "settings": {
+            "heading": "Comprehensive Curriculum",
+            "list_item_1": "Maths",
+            "list_item_2": "English",
+            "list_item_3": "Science"
+          }
+        },
+        "content_box_kwQ9Aw": {
+          "type": "content_box",
+          "settings": {
+            "heading": "Trusted by educators & parents",
+            "list_item_1": "160B+ questions answered by",
+            "list_item_2": "17M+ students on IXL.",
+            "list_item_3": ""
+          }
+        },
+        "content_box_GDxydd": {
+          "type": "content_box",
+          "settings": {
+            "heading": "Immersive learning experience",
+            "list_item_1": "Analytics",
+            "list_item_2": "Recommendations",
+            "list_item_3": ""
+          }
+        },
+        "button_rmqYjn": {
+          "type": "button",
+          "settings": {
+            "button_text": "Become a member!",
+            "button_link": "shopify://collections/all"
+          }
+        },
+        "image_xPpEpW": {
+          "type": "image",
+          "settings": {}
+        },
+        "image_LyUwrA": {
+          "type": "image",
+          "settings": {}
+        },
+        "image_RrCxaQ": {
+          "type": "image",
+          "settings": {}
+        },
+        "image_txa3UF": {
+          "type": "image",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "content_box_xazm7k",
+        "content_box_kwQ9Aw",
+        "content_box_GDxydd",
+        "button_rmqYjn",
+        "image_xPpEpW",
+        "image_LyUwrA",
+        "image_RrCxaQ",
+        "image_txa3UF"
+      ],
+      "name": "NXT Hero Area",
+      "settings": {
+        "heading": "IXL is personalised learning",
+        "padding_top": 68,
+        "padding_bottom": 0,
+        "color_scheme": ""
+      }
+    },
+    "rh_disover_sec_PpqQ3x": {
+      "type": "rh-disover-sec",
+      "blocks": {
+        "discover_card_VCinm3": {
+          "type": "discover_card",
+          "settings": {
+            "title": "Comprehensive Curriculum",
+            "title_color": "#f47804",
+            "description": "Find content to support nearly any lesson, with more than 8,000 skills covering maths, English, and science.",
+            "link_text": "Browse skills >",
+            "link_url": "shopify://collections",
+            "link_color": "#f47804",
+            "icon_svg": "<svg width=\"63\" height=\"63\" viewbox=\"0 0 63 63\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n                  <g clip-path=\"url(#clip0_1_2304)\">\n                    <path d=\"M31.995 60.9898C48.0085 60.9898 60.99 48.0083 60.99 31.9948C60.99 15.9813 48.0085 2.99976 31.995 2.99976C15.9815 2.99976 3 15.9813 3 31.9948C3 48.0083 15.9815 60.9898 31.995 60.9898Z\" stroke=\"#F47804\" stroke-width=\"3.99937\"></path>\n                    <path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M35.471 37.5264C34.9068 39.1433 33.4296 40.2972 31.6967 40.2972C29.9197 40.2972 28.412 39.0823 27.8832 37.4006C23.7452 38.8101 20.9617 42.6237 19.737 47.1941C19.5985 47.712 19.9837 48.2123 20.4958 48.2123H42.5104C43.0215 48.2123 43.4078 47.712 43.2692 47.1941C42.0779 42.7524 39.4163 39.0273 35.471 37.5264ZM31.7783 34.1355C30.1062 34.1377 28.4802 33.5877 27.1529 32.5707C24.7763 30.6541 25.1557 27.2632 25.9331 25.554C26.0659 25.2595 26.272 25.0039 26.5316 24.8117C26.7913 24.6195 27.0959 24.4971 27.4163 24.4561C27.7359 24.4167 28.0603 24.4602 28.3583 24.5824C28.6562 24.7046 28.9177 24.9014 29.1177 25.1539C30.6401 27.0637 34.2562 27.5512 36.8451 26.2872C36.8816 26.2691 36.9116 26.24 36.9308 26.2041C36.95 26.1681 36.9575 26.1271 36.9522 26.0867C36.9474 26.0461 36.9299 26.0081 36.9022 25.9781C36.8745 25.9481 36.838 25.9276 36.7979 25.9196C35.8376 25.7279 35.1368 24.9308 35.1742 24.0423L35.1978 24.0344C38.0481 24.1553 39.1254 25.4399 39.2571 27.9433C38.9276 29.6855 37.9998 31.2578 36.634 32.3884C35.2682 33.5191 33.5504 34.1371 31.7773 34.1355M48.0195 18.6817L32.7347 12.9613C32.2573 12.7831 31.7318 12.7831 31.2544 12.9613L15.9697 18.6817C15.9127 18.7023 15.8635 18.74 15.8288 18.7896C15.794 18.8392 15.7754 18.8983 15.7754 18.9588C15.7754 19.0194 15.794 19.0785 15.8288 19.1281C15.8635 19.1776 15.9127 19.2153 15.9697 19.236L17.6897 19.8798V25.5834H17.4656C17.4242 25.5833 17.3831 25.5913 17.3448 25.6071C17.3065 25.6228 17.2716 25.646 17.2422 25.6752C17.2128 25.7044 17.1895 25.7391 17.1735 25.7773C17.1575 25.8155 17.1492 25.8565 17.1491 25.898V29.3518C17.1491 29.5258 17.2906 29.6663 17.4656 29.6663H17.9108C17.9523 29.6665 17.9933 29.6584 18.0317 29.6427C18.07 29.627 18.1048 29.6038 18.1342 29.5746C18.1636 29.5454 18.187 29.5107 18.2029 29.4725C18.2189 29.4342 18.2272 29.3932 18.2273 29.3518V26.6853H18.9006V29.3518C18.9006 29.5258 19.0421 29.6663 19.2171 29.6663H19.6623C19.7038 29.6665 19.7448 29.6584 19.7832 29.6427C19.8215 29.627 19.8563 29.6038 19.8857 29.5746C19.9151 29.5454 19.9385 29.5107 19.9544 29.4725C19.9704 29.4342 19.9787 29.3932 19.9788 29.3518V25.898C19.9787 25.8565 19.9704 25.8155 19.9544 25.7773C19.9385 25.7391 19.9151 25.7044 19.8857 25.6752C19.8563 25.646 19.8215 25.6228 19.7832 25.6071C19.7448 25.5913 19.7038 25.5833 19.6623 25.5834H19.5198V20.5639L21.9869 21.4868V25.094C21.9161 25.5687 21.8787 26.0533 21.8787 26.5467C21.8787 31.9899 26.3194 36.4177 31.7783 36.4177C37.2372 36.4177 41.6779 31.9899 41.6779 26.5477C41.6779 26.297 41.6651 26.0503 41.6474 25.8056L41.6543 23.4427C41.6543 22.8147 41.5973 22.2279 41.4941 21.6775L48.0204 19.236C48.0774 19.2153 48.1265 19.1776 48.1613 19.1281C48.1961 19.0785 48.2147 19.0194 48.2147 18.9588C48.2147 18.8983 48.1961 18.8392 48.1613 18.7896C48.1265 18.74 48.0764 18.7023 48.0195 18.6817Z\" fill=\"#F47804\"></path>\n                  </g>\n                  <defs>\n                    <clippath id=\"clip0_1_2304\">\n                      <rect width=\"63\" height=\"63\" fill=\"white\"></rect>\n                    </clippath>\n                  </defs>\n                </svg>"
+          }
+        },
+        "discover_card_R7tyiX": {
+          "type": "discover_card",
+          "settings": {
+            "title": "Real-Time Diagnostic",
+            "title_color": "#c665ff",
+            "description": "Get instant insights into student understanding with detailed diagnostic reports and progress tracking.",
+            "link_text": "Learn more >",
+            "link_url": "shopify://collections",
+            "link_color": "#c665ff",
+            "icon_svg": "<svg width=\"63\" height=\"63\" viewbox=\"0 0 63 63\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n                  <g clip-path=\"url(#clip0_1_2304)\">\n                    <path d=\"M31.995 60.9898C48.0085 60.9898 60.99 48.0083 60.99 31.9948C60.99 15.9813 48.0085 2.99976 31.995 2.99976C15.9815 2.99976 3 15.9813 3 31.9948C3 48.0083 15.9815 60.9898 31.995 60.9898Z\" stroke=\"#F47804\" stroke-width=\"3.99937\"></path>\n                    <path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M35.471 37.5264C34.9068 39.1433 33.4296 40.2972 31.6967 40.2972C29.9197 40.2972 28.412 39.0823 27.8832 37.4006C23.7452 38.8101 20.9617 42.6237 19.737 47.1941C19.5985 47.712 19.9837 48.2123 20.4958 48.2123H42.5104C43.0215 48.2123 43.4078 47.712 43.2692 47.1941C42.0779 42.7524 39.4163 39.0273 35.471 37.5264ZM31.7783 34.1355C30.1062 34.1377 28.4802 33.5877 27.1529 32.5707C24.7763 30.6541 25.1557 27.2632 25.9331 25.554C26.0659 25.2595 26.272 25.0039 26.5316 24.8117C26.7913 24.6195 27.0959 24.4971 27.4163 24.4561C27.7359 24.4167 28.0603 24.4602 28.3583 24.5824C28.6562 24.7046 28.9177 24.9014 29.1177 25.1539C30.6401 27.0637 34.2562 27.5512 36.8451 26.2872C36.8816 26.2691 36.9116 26.24 36.9308 26.2041C36.95 26.1681 36.9575 26.1271 36.9522 26.0867C36.9474 26.0461 36.9299 26.0081 36.9022 25.9781C36.8745 25.9481 36.838 25.9276 36.7979 25.9196C35.8376 25.7279 35.1368 24.9308 35.1742 24.0423L35.1978 24.0344C38.0481 24.1553 39.1254 25.4399 39.2571 27.9433C38.9276 29.6855 37.9998 31.2578 36.634 32.3884C35.2682 33.5191 33.5504 34.1371 31.7773 34.1355M48.0195 18.6817L32.7347 12.9613C32.2573 12.7831 31.7318 12.7831 31.2544 12.9613L15.9697 18.6817C15.9127 18.7023 15.8635 18.74 15.8288 18.7896C15.794 18.8392 15.7754 18.8983 15.7754 18.9588C15.7754 19.0194 15.794 19.0785 15.8288 19.1281C15.8635 19.1776 15.9127 19.2153 15.9697 19.236L17.6897 19.8798V25.5834H17.4656C17.4242 25.5833 17.3831 25.5913 17.3448 25.6071C17.3065 25.6228 17.2716 25.646 17.2422 25.6752C17.2128 25.7044 17.1895 25.7391 17.1735 25.7773C17.1575 25.8155 17.1492 25.8565 17.1491 25.898V29.3518C17.1491 29.5258 17.2906 29.6663 17.4656 29.6663H17.9108C17.9523 29.6665 17.9933 29.6584 18.0317 29.6427C18.07 29.627 18.1048 29.6038 18.1342 29.5746C18.1636 29.5454 18.187 29.5107 18.2029 29.4725C18.2189 29.4342 18.2272 29.3932 18.2273 29.3518V26.6853H18.9006V29.3518C18.9006 29.5258 19.0421 29.6663 19.2171 29.6663H19.6623C19.7038 29.6665 19.7448 29.6584 19.7832 29.6427C19.8215 29.627 19.8563 29.6038 19.8857 29.5746C19.9151 29.5454 19.9385 29.5107 19.9544 29.4725C19.9704 29.4342 19.9787 29.3932 19.9788 29.3518V25.898C19.9787 25.8565 19.9704 25.8155 19.9544 25.7773C19.9385 25.7391 19.9151 25.7044 19.8857 25.6752C19.8563 25.646 19.8215 25.6228 19.7832 25.6071C19.7448 25.5913 19.7038 25.5833 19.6623 25.5834H19.5198V20.5639L21.9869 21.4868V25.094C21.9161 25.5687 21.8787 26.0533 21.8787 26.5467C21.8787 31.9899 26.3194 36.4177 31.7783 36.4177C37.2372 36.4177 41.6779 31.9899 41.6779 26.5477C41.6779 26.297 41.6651 26.0503 41.6474 25.8056L41.6543 23.4427C41.6543 22.8147 41.5973 22.2279 41.4941 21.6775L48.0204 19.236C48.0774 19.2153 48.1265 19.1776 48.1613 19.1281C48.1961 19.0785 48.2147 19.0194 48.2147 18.9588C48.2147 18.8983 48.1961 18.8392 48.1613 18.7896C48.1265 18.74 48.0764 18.7023 48.0195 18.6817Z\" fill=\"#F47804\"></path>\n                  </g>\n                  <defs>\n                    <clippath id=\"clip0_1_2304\">\n                      <rect width=\"63\" height=\"63\" fill=\"white\"></rect>\n                    </clippath>\n                  </defs>\n                </svg>"
+          }
+        },
+        "discover_card_weaYtL": {
+          "type": "discover_card",
+          "settings": {
+            "title": "Personalized Guidance",
+            "title_color": "#2496ff",
+            "description": "IXL adapts to each student's unique learning needs with personalized recommendations and practice.",
+            "link_text": "Explore features >",
+            "link_url": "shopify://collections",
+            "link_color": "#2496ff",
+            "icon_svg": "<svg width=\"63\" height=\"63\" viewbox=\"0 0 63 63\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n                  <g clip-path=\"url(#clip0_1_2338)\">\n                    <g clip-path=\"url(#clip1_1_2338)\">\n                      <g clip-path=\"url(#clip2_1_2338)\">\n                        <path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M30.7457 38.494V49.0683L32.7453 48.9923V32.9949C41.7439 31.3281 45.0184 25.663 42.5688 15.9976C33.9842 17.1184 30.0428 22.7845 30.7457 32.9949C28.341 27.0938 23.3418 25.4641 15.748 28.1046C17.4748 37.1472 22.474 40.6107 30.7457 38.494Z\" fill=\"#2496FF\"></path>\n                        <path d=\"M31.2453 60.9904C47.5351 60.9904 60.7406 47.7849 60.7406 31.4951C60.7406 15.2053 47.5351 1.99976 31.2453 1.99976C14.9555 1.99976 1.75 15.2053 1.75 31.4951C1.75 47.7849 14.9555 60.9904 31.2453 60.9904Z\" stroke=\"#2496FF\" stroke-width=\"3.99937\"></path>\n                      </g>\n                    </g>\n                  </g>\n                  <defs>\n                    <clippath id=\"clip0_1_2338\">\n                      <rect width=\"63\" height=\"63\" fill=\"white\"></rect>\n                    </clippath>\n                    <clippath id=\"clip1_1_2338\">\n                      <rect width=\"62.99\" height=\"62.99\" fill=\"white\" transform=\"translate(-0.25)\"></rect>\n                    </clippath>\n                    <clippath id=\"clip2_1_2338\">\n                      <rect width=\"62.99\" height=\"62.99\" fill=\"white\" transform=\"translate(-0.25)\"></rect>\n                    </clippath>\n                  </defs>\n                </svg>"
+          }
+        },
+        "discover_card_bJHaga": {
+          "type": "discover_card",
+          "settings": {
+            "title": "Actionable Analytics",
+            "title_color": "#edba13",
+            "description": "Trusted by millions of teachers and students worldwide with proven results in academic achievement.",
+            "link_text": "See awards >",
+            "link_url": "shopify://collections",
+            "link_color": "#edba13",
+            "icon_svg": "<svg width=\"63\" height=\"63\" viewbox=\"0 0 63 63\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n                  <g clip-path=\"url(#clip0_1_2355)\">\n                    <g clip-path=\"url(#clip1_1_2355)\">\n                      <g clip-path=\"url(#clip2_1_2355)\">\n                        <path d=\"M31.4953 60.9904C47.7851 60.9904 60.9906 47.7849 60.9906 31.4951C60.9906 15.2053 47.7851 1.99976 31.4953 1.99976C15.2055 1.99976 2 15.2053 2 31.4951C2 47.7849 15.2055 60.9904 31.4953 60.9904Z\" stroke=\"#EDBA13\" stroke-width=\"3.99937\"></path>\n                        <path d=\"M46.4929 41.9934H16.4977C15.6694 41.9934 14.9979 42.6649 14.9979 43.4932C14.9979 44.3215 15.6694 44.9929 16.4977 44.9929H46.4929C47.3212 44.9929 47.9927 44.3215 47.9927 43.4932C47.9927 42.6649 47.3212 41.9934 46.4929 41.9934Z\" fill=\"#EDBA13\"></path>\n                        <path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M19.9968 21.9965H22.9963C23.5266 21.9965 24.0353 22.2072 24.4103 22.5822C24.7853 22.9572 24.996 23.4659 24.996 23.9962V39.9937H17.9971V23.9962C17.9971 23.4659 18.2078 22.9572 18.5828 22.5822C18.9578 22.2072 19.4664 21.9965 19.9968 21.9965ZM29.9952 26.9957H32.9947C33.525 26.9957 34.0337 27.2064 34.4087 27.5814C34.7837 27.9564 34.9944 28.4651 34.9944 28.9954V39.9937H27.9955V28.9954C27.9955 28.4651 28.2062 27.9564 28.5812 27.5814C28.9562 27.2064 29.4648 26.9957 29.9952 26.9957ZM39.9936 16.9973H42.9931C43.5235 16.9973 44.0321 17.208 44.4071 17.583C44.7821 17.958 44.9928 18.4666 44.9928 18.997V39.9937H37.9939V18.997C37.9939 18.4666 38.2046 17.958 38.5796 17.583C38.9546 17.208 39.4632 16.9973 39.9936 16.9973Z\" fill=\"#EDBA13\"></path>\n                      </g>\n                    </g>\n                  </g>\n                  <defs>\n                    <clippath id=\"clip0_1_2355\">\n                      <rect width=\"62.99\" height=\"62.99\" fill=\"white\"></rect>\n                    </clippath>\n                    <clippath id=\"clip1_1_2355\">\n                      <rect width=\"62.99\" height=\"62.99\" fill=\"white\"></rect>\n                    </clippath>\n                    <clippath id=\"clip2_1_2355\">\n                      <rect width=\"62.99\" height=\"62.99\" fill=\"white\"></rect>\n                    </clippath>\n                  </defs>\n                </svg>"
+          }
+        }
+      },
+      "block_order": [
+        "discover_card_VCinm3",
+        "discover_card_R7tyiX",
+        "discover_card_weaYtL",
+        "discover_card_bJHaga"
+      ],
+      "name": "SA Discover Section",
+      "settings": {
+        "title": "Discover how IXL supports success for every learner",
+        "description": "IXL gives teachers everything they need to personalise instruction",
+        "background_image": "shopify://shop_images/discover-bg.png"
+      }
+    },
+    "rh_site_features_sec_cBUtfj": {
+      "type": "rh-site-features-sec",
+      "blocks": {
+        "feature_card_JgV7bN": {
+          "type": "feature_card",
+          "settings": {
+            "title": "Proven effective",
+            "description": "Research has shown over and over that IXL produces real results.",
+            "card_background_color": "#ff8e24",
+            "background_image": "shopify://shop_images/interior-contour-visualization-3d-illustration-sketch-outline_1.png",
+            "feature_image": "shopify://shop_images/portrait-smiling-mother-sitting-with-daughter-wearing-graduation-gown-against-wall-home_1.png",
+            "button_text": "See the research",
+            "button_url": "shopify://collections"
+          }
+        },
+        "feature_card_wRpWbU": {
+          "type": "feature_card",
+          "settings": {
+            "title": "Flexible for any classroom",
+            "description": "Research has shown over and over that IXL produces real results.",
+            "card_background_color": "#f5c41f",
+            "background_image": "shopify://shop_images/commercial-premises-shop-interior-visualization-3d-illustration_1.png",
+            "feature_image": "shopify://shop_images/happy-smiling-boy-preparing-school_1.png",
+            "button_text": "Hear their story",
+            "button_url": "shopify://collections"
+          }
+        },
+        "feature_card_mfkCQx": {
+          "type": "feature_card",
+          "settings": {
+            "title": "Trusted by top teachers",
+            "description": "Research has shown over and over that IXL produces real results.",
+            "card_background_color": "#f34986",
+            "background_image": "shopify://shop_images/restaurant-3d-illustration-sketch-outlin_1.png",
+            "feature_image": "shopify://shop_images/businessman-hold-notebook-successful-ceo-with-notepad_1.png",
+            "button_text": "Get the details",
+            "button_url": "shopify://collections"
+          }
+        }
+      },
+      "block_order": [
+        "feature_card_JgV7bN",
+        "feature_card_wRpWbU",
+        "feature_card_mfkCQx"
+      ],
+      "name": "SA Site Features",
+      "settings": {
+        "background_color": "#f5f5f5"
+      }
+    },
     "sa_testimonial_section_9YdabA": {
       "type": "sa-testimonial-section",
       "blocks": {
@@ -90,82 +277,12 @@
         "hero_image_alt": "Hero Image",
         "show_hero_section": true
       }
-    },
-    "nxt_hero_area_wQAKDL": {
-      "type": "nxt-hero-area",
-      "blocks": {
-        "content_box_xazm7k": {
-          "type": "content_box",
-          "settings": {
-            "heading": "Comprehensive Curriculum",
-            "list_item_1": "Maths",
-            "list_item_2": "English",
-            "list_item_3": "Science"
-          }
-        },
-        "content_box_kwQ9Aw": {
-          "type": "content_box",
-          "settings": {
-            "heading": "Trusted by educators & parents",
-            "list_item_1": "160B+ questions answered by",
-            "list_item_2": "17M+ students on IXL.",
-            "list_item_3": ""
-          }
-        },
-        "content_box_GDxydd": {
-          "type": "content_box",
-          "settings": {
-            "heading": "Immersive learning experience",
-            "list_item_1": "Analytics",
-            "list_item_2": "Recommendations",
-            "list_item_3": ""
-          }
-        },
-        "button_rmqYjn": {
-          "type": "button",
-          "settings": {
-            "button_text": "Become a member!",
-            "button_link": "shopify://collections/all"
-          }
-        },
-        "image_xPpEpW": {
-          "type": "image",
-          "settings": {}
-        },
-        "image_LyUwrA": {
-          "type": "image",
-          "settings": {}
-        },
-        "image_RrCxaQ": {
-          "type": "image",
-          "settings": {}
-        },
-        "image_txa3UF": {
-          "type": "image",
-          "settings": {}
-        }
-      },
-      "block_order": [
-        "content_box_xazm7k",
-        "content_box_kwQ9Aw",
-        "content_box_GDxydd",
-        "button_rmqYjn",
-        "image_xPpEpW",
-        "image_LyUwrA",
-        "image_RrCxaQ",
-        "image_txa3UF"
-      ],
-      "name": "NXT Hero Area",
-      "settings": {
-        "heading": "IXL is personalised learning",
-        "padding_top": 68,
-        "padding_bottom": 0,
-        "color_scheme": ""
-      }
     }
   },
   "order": [
     "nxt_hero_area_wQAKDL",
+    "rh_disover_sec_PpqQ3x",
+    "rh_site_features_sec_cBUtfj",
     "sa_testimonial_section_9YdabA"
   ]
 }

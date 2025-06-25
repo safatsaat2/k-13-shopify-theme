@@ -1,0 +1,356 @@
+<section
+  class="rh-discover-section"
+  {% if section.settings.background_image %}
+    style="background-image: url('{{ section.settings.background_image | img_url: 'master' }}');"
+  {% endif %}
+>
+  <div class="container_rh">
+    {% if section.settings.title %}
+      <div class="discover-title-rh">
+        {{ section.settings.title }}
+      </div>
+    {% endif %}
+
+    {% if section.settings.description %}
+      <div class="discover-description-rh">
+        {{ section.settings.description }}
+      </div>
+    {% endif %}
+
+    <div class="cards-container-rh">
+      {% for block in section.blocks %}
+        <div class="discover-card-main-rh" {{ block.shopify_attributes }}>
+          <div class="discover-card-content-rh">
+            <div class="discover-card-text-wrapper-rh">
+              {% if block.settings.title %}
+                <div class="discover-card-title-rh" style="color: {{ block.settings.title_color }};">
+                  {{ block.settings.title }}
+                </div>
+              {% endif %}
+
+              {% if block.settings.description %}
+                <div class="discover-card-description-rh">
+                  {{ block.settings.description }}
+                </div>
+              {% endif %}
+            </div>
+
+            <div class="discover-card-link-rh">
+              {% if block.settings.link_text and block.settings.link_url %}
+                <a
+                  href="{{ block.settings.link_url }}"
+                  class="discover-card-link-text-rh"
+                  style="color: {{ block.settings.link_color }};"
+                >
+                  {{ block.settings.link_text }}
+                </a>
+              {% endif %}
+
+              {% if block.settings.icon_svg %}
+                <div class="card-icon">
+                  {{ block.settings.icon_svg }}
+                </div>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% style %}
+  .rh-discover-section {
+    padding: 80px 20px;
+    background: url(./images/discover-bg.png) no-repeat center center;
+    background-size: cover;
+  }
+
+  .rh-discover-section .container_rh {
+    width: 100%;
+    max-width: 1302px;
+    margin: 0 auto;
+  }
+
+  .rh-discover-section .container_rh .discover-title-rh {
+    font-family: "Luckiest Guy", cursive;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 52px;
+    line-height: 120%;
+    letter-spacing: 0px;
+    text-align: center;
+    color: #05203e;
+    max-width: 887px;
+    margin: 0 auto;
+  }
+
+  .rh-discover-section .container_rh .discover-title-rh span {
+    color: #f47804;
+  }
+
+  .rh-discover-section .container_rh .discover-description-rh {
+    font-family: "Comic Neue", cursive;
+    font-weight: 700;
+    font-size: 28px;
+    line-height: 120%;
+    letter-spacing: 0%;
+    text-align: center;
+    color: #0c0c0c;
+    margin: 16px 0 60px;
+  }
+
+  /* ===== DISCOVER SECTION CARDS ===== */
+  .rh-discover-section .cards-container-rh {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: clamp(16px, 2vw, 24px);
+    max-width: 1302px;
+    margin: 0 auto;
+  }
+
+  .discover-card-main-rh {
+    background: white;
+    border-radius: 12px;
+    padding: 24px;
+    min-height: 320px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .discover-card-main-rh:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  }
+
+  .discover-card-content-rh {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .discover-card-text-wrapper-rh {
+    margin-bottom: 24px;
+  }
+
+  .discover-card-title-rh {
+    font-family: "Comic Neue", cursive;
+    font-weight: 700;
+    font-size: clamp(18px, 2vw, 24px);
+    line-height: 1.2;
+    margin-bottom: 16px;
+  }
+
+  .discover-card-description-rh {
+    font-family: "Lato", sans-serif;
+    font-weight: 400;
+    font-size: clamp(14px, 1.5vw, 16px);
+    line-height: 1.5;
+    color: #05203e;
+    margin-bottom: 0;
+  }
+
+  .discover-card-link-rh {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    transition: color 0.2s ease;
+  }
+
+  .discover-card-link-text-rh {
+    font-family: "Lato", sans-serif;
+    font-weight: 700;
+    font-size: clamp(14px, 1.4vw, 16px);
+    cursor: pointer;
+    text-decoration: none;
+  }
+
+  .discover-card-link-rh svg {
+    width: clamp(48px, 6vw, 62px);
+    height: clamp(48px, 6vw, 62px);
+    flex-shrink: 0;
+  }
+
+  /* ===== CARD ICON STYLING ===== */
+  .card-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .card-icon svg {
+    width: clamp(48px, 6vw, 62px);
+    height: clamp(48px, 6vw, 62px);
+    flex-shrink: 0;
+  }
+
+  /* ===== RESPONSIVE GRID LAYOUTS ===== */
+  @media (max-width: 1200px) {
+    .rh-discover-section {
+      padding: 60px 20px;
+    }
+
+    .rh-discover-section .cards-container-rh {
+      grid-template-columns: repeat(3, 1fr);
+      gap: clamp(16px, 2.5vw, 20px);
+    }
+  }
+
+  @media (max-width: 900px) {
+    .rh-discover-section .cards-container-rh {
+      grid-template-columns: repeat(2, 1fr);
+      gap: clamp(16px, 3vw, 20px);
+    }
+  }
+
+  @media (max-width: 600px) {
+    .rh-discover-section .cards-container-rh {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    .discover-card-main-rh {
+      padding: 20px;
+      min-height: 240px;
+    }
+
+    .discover-card-title-rh {
+      font-size: 20px;
+    }
+
+    .discover-card-description-rh {
+      font-size: 14px;
+    }
+
+    .discover-card-link-rh svg {
+      width: 48px;
+      height: 48px;
+    }
+  }
+{% endstyle %}
+
+{% schema %}
+{
+  "name": "Discover Section",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "Discover how IXL <span>supports success</span> for every learner"
+    },
+    {
+      "type": "text",
+      "id": "description",
+      "label": "Section Description",
+      "default": "IXL gives teachers everything they need to personalise instruction"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background Image"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "discover_card",
+      "name": "Discover Card",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Card Title",
+          "default": "Card Title"
+        },
+        {
+          "type": "color",
+          "id": "title_color",
+          "label": "Title Color",
+          "default": "#F47804"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Card Description",
+          "default": "Enter your card description here"
+        },
+        {
+          "type": "text",
+          "id": "link_text",
+          "label": "Link Text",
+          "default": "Learn more >"
+        },
+        {
+          "type": "url",
+          "id": "link_url",
+          "label": "Link URL"
+        },
+        {
+          "type": "color",
+          "id": "link_color",
+          "label": "Link Color",
+          "default": "#F47804"
+        },
+        {
+          "type": "html",
+          "id": "icon_svg",
+          "label": "Icon SVG Code",
+          "info": "Paste your SVG code here"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "SA Discover Section",
+      "blocks": [
+        {
+          "type": "discover_card",
+          "settings": {
+            "title": "Comprehensive Curriculum",
+            "title_color": "#F47804",
+            "description": "Find content to support nearly any lesson, with more than 8,000 skills covering maths, English, and science.",
+            "link_text": "Browse skills >",
+            "link_color": "#F47804"
+          }
+        },
+        {
+          "type": "discover_card",
+          "settings": {
+            "title": "Real-Time Diagnostic",
+            "title_color": "#C665FF",
+            "description": "Get instant insights into student understanding with detailed diagnostic reports and progress tracking.",
+            "link_text": "Learn more >",
+            "link_color": "#C665FF"
+          }
+        },
+        {
+          "type": "discover_card",
+          "settings": {
+            "title": "Personalized Guidance",
+            "title_color": "#2496FF",
+            "description": "IXL adapts to each student's unique learning needs with personalized recommendations and practice.",
+            "link_text": "Explore features >",
+            "link_color": "#2496FF"
+          }
+        },
+        {
+          "type": "discover_card",
+          "settings": {
+            "title": "Actionable Analytics",
+            "title_color": "#EDBA13",
+            "description": "Trusted by millions of teachers and students worldwide with proven results in academic achievement.",
+            "link_text": "See awards >",
+            "link_color": "#EDBA13"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
