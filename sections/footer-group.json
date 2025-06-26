@@ -50,49 +50,49 @@
           "type": "link_list",
           "settings": {
             "title": "School \"InternetUrok\"",
-            "menu": ""
+            "menu": "school-interneturok"
           }
         },
         "link_list_a8wGX7": {
           "type": "link_list",
           "settings": {
             "title": "School program",
-            "menu": ""
+            "menu": "school-program"
           }
         },
         "link_list_a7rJCK": {
           "type": "link_list",
           "settings": {
             "title": "Additionally",
-            "menu": ""
+            "menu": "additionally"
           }
         },
         "link_list_VhErLG": {
           "type": "link_list",
           "settings": {
             "title": "About Us",
-            "menu": ""
+            "menu": "about-us"
           }
         },
         "bottom_link_list_dw8h6W": {
           "type": "bottom_link_list",
           "settings": {
             "title": "For preschoolers",
-            "menu": ""
+            "menu": "for-preschoolers"
           }
         },
         "bottom_link_list_WCJemn": {
           "type": "bottom_link_list",
           "settings": {
             "title": "Help for a schoolchild",
-            "menu": ""
+            "menu": "help-for-a-schoolchild"
           }
         },
         "bottom_link_list_XcitPU": {
           "type": "bottom_link_list",
           "settings": {
             "title": "Useful",
-            "menu": ""
+            "menu": "useful"
           }
         },
         "social_link_MtjcWJ": {

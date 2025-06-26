@@ -66,6 +66,7 @@
         "description",
         "share"
       ],
+      "disabled": true,
       "settings": {
         "enable_sticky_info": true,
         "color_scheme": "scheme-1",
@@ -84,6 +85,7 @@
     },
     "related-products": {
       "type": "related-products",
+      "disabled": true,
       "settings": {
         "heading": "You may also like",
         "heading_size": "h2",
@@ -99,10 +101,41 @@
         "padding_top": 36,
         "padding_bottom": 28
       }
+    },
+    "single_course_tBQfq3": {
+      "type": "single-course",
+      "blocks": {
+        "reviews_jn6an7": {
+          "type": "reviews",
+          "settings": {
+            "review_title": "Review",
+            "rating_label": "Course Rating",
+            "leave_review_url": "",
+            "review_date_text": "Posted recently",
+            "view_more_text": "View more",
+            "view_more_url": "",
+            "progress_label_1": "Service",
+            "progress_value_1": 97,
+            "progress_label_2": "Content",
+            "progress_value_2": 95,
+            "progress_label_3": "Value",
+            "progress_value_3": 90,
+            "filter_1": "Most Recent",
+            "filter_2": "Highest Rated",
+            "filter_3": "Lowest Rated"
+          }
+        }
+      },
+      "block_order": [
+        "reviews_jn6an7"
+      ],
+      "name": "Single Course",
+      "settings": {}
     }
   },
   "order": [
     "main",
+    "single_course_tBQfq3",
     "related-products"
   ]
 }

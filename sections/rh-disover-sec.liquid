@@ -5,9 +5,11 @@
   {% endif %}
 >
   <div class="container_rh">
-    {% if section.settings.title %}
+    {% if section.settings.title_part_1 or section.settings.title_part_2 or section.settings.title_part_3 %}
       <div class="discover-title-rh">
-        {{ section.settings.title }}
+        {% if section.settings.title_part_1 %}{{ section.settings.title_part_1 }}{% endif %}
+        {% if section.settings.title_part_2 %}<span>{{ section.settings.title_part_2 }}</span>{% endif %}
+        {% if section.settings.title_part_3 %}{{ section.settings.title_part_3 }}{% endif %}
       </div>
     {% endif %}
 
@@ -240,9 +242,21 @@
   "settings": [
     {
       "type": "text",
-      "id": "title",
-      "label": "Section Title",
-      "default": "Discover how IXL <span>supports success</span> for every learner"
+      "id": "title_part_1",
+      "label": "Title - First Part",
+      "default": "Discover how IXL "
+    },
+    {
+      "type": "text",
+      "id": "title_part_2",
+      "label": "Title - Middle Part (Highlighted)",
+      "default": "supports success"
+    },
+    {
+      "type": "text",
+      "id": "title_part_3",
+      "label": "Title - Last Part",
+      "default": " for every learner"
     },
     {
       "type": "text",

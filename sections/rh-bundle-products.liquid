@@ -1,0 +1,364 @@
+<section
+  class="rh-bundle-products"
+  {% if section.settings.background_color %}
+    style="background-color: {{ section.settings.background_color }};"
+  {% endif %}
+>
+  <div class="container_rh">
+    {% if section.settings.collection != blank %}
+      {% assign selected_collection = collections[section.settings.collection] %}
+      {% assign product_limit = section.settings.products_to_show | default: 9 %}
+
+      {% for product in selected_collection.products limit: product_limit %}
+        <a href="{{ product.url }}" class="products-container-rh product-card-link">
+          <div class="products-title-image">
+            <div class="imagee">
+              <span>{{ product.title | slice: 0, 1 | upcase }}</span>
+            </div>
+            <div class="title-rh">{{ product.title }}</div>
+          </div>
+
+          {% if product.description != blank %}
+            <div class="products-description-rh">
+              {{ product.description | strip_html | truncate: 120 }}
+            </div>
+          {% endif %}
+
+          <hr class="hr-rh">
+
+          <div class="course-list-rh">
+            {% comment %} Check for course metafields {% endcomment %}
+            {% if product.metafields.courses %}
+              {% for field in product.metafields.courses %}
+                {% if field[1].type == 'json' and field[1].value %}
+                  {% assign courses = field[1].value %}
+                  {% for course in courses %}
+                    <div class="course-item-rh">
+                      <div class="course-item-rh-name">{{ course.name | default: 'Course' }}</div>
+                      <div class="course-item-rh-skills">{{ course.skills | default: '0' }} skills >></div>
+                    </div>
+                  {% endfor %}
+                  {% break %}
+                {% endif %}
+              {% endfor %}
+            {% else %}
+              {% comment %} Fallback: Check individual metafields {% endcomment %}
+              {% assign course_names = product.metafields.custom.course_names.value %}
+              {% assign course_skills = product.metafields.custom.course_skills.value %}
+
+              {% if course_names and course_skills %}
+                {% assign names_array = course_names | split: ',' %}
+                {% assign skills_array = course_skills | split: ',' %}
+
+                {% for name in names_array %}
+                  {% assign index = forloop.index0 %}
+                  {% assign skill_count = skills_array[index] | default: '0' %}
+                  <div class="course-item-rh">
+                    <div class="course-item-rh-name">{{ name | strip }}</div>
+                    <div class="course-item-rh-skills">{{ skill_count | strip }} skills >></div>
+                  </div>
+                {% endfor %}
+              {% else %}
+                {% comment %} Default fallback courses {% endcomment %}
+                <div class="course-item-rh">
+                  <div class="course-item-rh-name">Maths</div>
+                  <div class="course-item-rh-skills">
+                    {{ product.metafields.custom.maths_skills.value | default: '0' }} skills >>
+                  </div>
+                </div>
+                <div class="course-item-rh">
+                  <div class="course-item-rh-name">English</div>
+                  <div class="course-item-rh-skills">
+                    {{ product.metafields.custom.english_skills.value | default: '0' }} skills >>
+                  </div>
+                </div>
+                {% if product.metafields.custom.science_skills.value %}
+                  <div class="course-item-rh">
+                    <div class="course-item-rh-name">Science</div>
+                    <div class="course-item-rh-skills">
+                      {{ product.metafields.custom.science_skills.value }} skills >>
+                    </div>
+                  </div>
+                {% endif %}
+              {% endif %}
+            {% endif %}
+          </div>
+        </a>
+      {% endfor %}
+    {% else %}
+      {% comment %} Placeholder when no collection is selected {% endcomment %}
+      <div class="no-collection-message">
+        <p>Please select a collection in the theme editor to display products.</p>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+{% style %}
+  .rh-bundle-products {
+    padding: 190px 20px 100px;
+    background: #fffefb;
+  }
+
+  .rh-bundle-products .container_rh {
+    width: 100%;
+    max-width: 1302px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(20px, 3vw, 30px);
+  }
+
+  /* Product card link styling */
+  .product-card-link {
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .product-card-link:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  }
+
+  /* No collection message */
+  .no-collection-message {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 40px 20px;
+    background: #f9f9f9;
+    border-radius: 10px;
+    color: #666;
+  }
+
+  /* ===== RESPONSIVE GRID LAYOUTS ===== */
+  @media (max-width: 1200px) {
+    .rh-bundle-products {
+      padding: 150px 20px 60px;
+    }
+    .rh-bundle-products .container_rh {
+      grid-template-columns: repeat(2, 1fr);
+      gap: clamp(15px, 2.5vw, 25px);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .rh-bundle-products .container_rh {
+      grid-template-columns: 1fr;
+      gap: clamp(15px, 2vw, 20px);
+    }
+
+    .rh-bundle-products .container_rh .products-container-rh .products-title-image {
+      gap: clamp(10px, 2vw, 15px);
+    }
+
+    .rh-bundle-products .container_rh .products-container-rh .products-title-image .title-rh {
+      font-size: clamp(24px, 4vw, 32px);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .rh-bundle-products .container_rh {
+      gap: 15px;
+    }
+
+    .rh-bundle-products {
+      padding: clamp(0.5rem, 1.5vw, 1rem);
+    }
+
+    .rh-bundle-products .container_rh .products-container-rh {
+      padding: clamp(12px, 3vw, 16px);
+    }
+
+    .rh-bundle-products .container_rh .products-container-rh .products-title-image .imagee {
+      width: 45px;
+      height: 45px;
+      font-size: 18px;
+    }
+
+    .rh-bundle-products .container_rh .products-container-rh .products-title-image .title-rh {
+      font-size: 22px;
+    }
+
+    .rh-bundle-products .container_rh .products-container-rh .products-description-rh {
+      font-size: 14px;
+    }
+  }
+
+  /* ===== COLOR PALETTES ===== */
+  /* Color Palette 1 - Yellow - Cards 1, 5, 9, 13... */
+  .rh-bundle-products .container_rh .products-container-rh:nth-child(4n + 1) {
+    border: 1px solid #faca2a4d;
+    background: #feffd2;
+  }
+  .rh-bundle-products .container_rh .products-container-rh:nth-child(4n + 1) .products-title-image .imagee {
+    background: #ffed93;
+    color: #ff5b13;
+  }
+  .rh-bundle-products .container_rh .products-container-rh:nth-child(4n + 1) .hr-rh {
+    border-bottom-color: #faca2a4d;
+  }
+
+  /* Color Palette 2 - Orange - Cards 2, 6, 10, 14... */
+  .rh-bundle-products .container_rh .products-container-rh:nth-child(4n + 2) {
+    border: 1px solid #ff8e244d;
+    background: #fff1ce;
+  }
+  .rh-bundle-products .container_rh .products-container-rh:nth-child(4n + 2) .products-title-image .imagee {
+    background: #ffd293;
+    color: #a61418;
+  }
+  .rh-bundle-products .container_rh .products-container-rh:nth-child(4n + 2) .hr-rh {
+    border-bottom-color: #ff8e244d;
+  }
+
+  /* Color Palette 3 - Blue - Cards 3, 7, 11, 15... */
+  .rh-bundle-products .container_rh .products-container-rh:nth-child(4n + 3) {
+    border: 1px solid #2496ff4d;
+    background: #e7f3fe;
+  }
+  .rh-bundle-products .container_rh .products-container-rh:nth-child(4n + 3) .products-title-image .imagee {
+    background: #93dfff;
+    color: #061b66;
+  }
+  .rh-bundle-products .container_rh .products-container-rh:nth-child(4n + 3) .hr-rh {
+    border-bottom-color: #2496ff4d;
+  }
+
+  /* Color Palette 4 - Pink - Cards 4, 8, 12, 16... */
+  .rh-bundle-products .container_rh .products-container-rh:nth-child(4n + 4) {
+    border: 1px solid #f349864d;
+    background: #fdecf8;
+  }
+  .rh-bundle-products .container_rh .products-container-rh:nth-child(4n + 4) .products-title-image .imagee {
+    background: #e5b9ff;
+    color: #ae13c0;
+  }
+  .rh-bundle-products .container_rh .products-container-rh:nth-child(4n + 4) .hr-rh {
+    border-bottom-color: #f349864d;
+  }
+
+  /* ===== CARD STYLING ===== */
+  .rh-bundle-products .container_rh .products-container-rh {
+    padding: clamp(9px, 2vw, 20px);
+    border-radius: 10px;
+  }
+
+  .rh-bundle-products .container_rh .products-container-rh .products-title-image {
+    display: flex;
+    align-items: center;
+    gap: clamp(12px, 2vw, 20px);
+    margin-bottom: clamp(8px, 1.5vw, 16px);
+  }
+
+  .rh-bundle-products .container_rh .products-container-rh .products-title-image .imagee {
+    border-radius: clamp(12px, 2vw, 16px);
+    width: clamp(50px, 8vw, 70px);
+    height: clamp(50px, 8vw, 70px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: clamp(22px, 4vw, 37px);
+    font-weight: 900;
+    font-family: "Gambero";
+    flex-shrink: 0;
+  }
+
+  .rh-bundle-products .container_rh .products-container-rh .products-title-image .title-rh {
+    font-family: "Comic Neue", cursive;
+    font-weight: 700;
+    font-size: clamp(28px, 5vw, 43px);
+    line-height: 1.1;
+    letter-spacing: normal;
+    color: #05203e;
+  }
+
+  .rh-bundle-products .container_rh .products-container-rh .products-description-rh {
+    font-family: "Lato", sans-serif;
+    font-weight: 400;
+    font-size: clamp(14px, 2vw, 17px);
+    line-height: 1.4;
+    letter-spacing: normal;
+    color: #000000;
+    margin: clamp(8px, 1.5vw, 16px) 0 clamp(12px, 2vw, 20px);
+  }
+
+  .rh-bundle-products .container_rh .products-container-rh .hr-rh {
+    padding: 0;
+    margin: 0;
+    border: none;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    width: 100%;
+    height: 0;
+  }
+
+  .rh-bundle-products .container_rh .products-container-rh .course-list-rh {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(6px, 1vw, 8px);
+    margin: clamp(12px, 2vw, 20px) 0 0;
+  }
+
+  .rh-bundle-products .container_rh .products-container-rh .course-list-rh .course-item-rh {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: clamp(8px, 1vw, 12px);
+  }
+
+  .rh-bundle-products .container_rh .products-container-rh .course-list-rh .course-item-rh .course-item-rh-name {
+    font-family: "Lato", sans-serif;
+    font-weight: 400;
+    font-size: clamp(12px, 1.5vw, 14px);
+    line-height: 1.1;
+    letter-spacing: normal;
+    color: #000000;
+  }
+
+  .rh-bundle-products .container_rh .products-container-rh .course-list-rh .course-item-rh .course-item-rh-skills {
+    font-family: "Lato", sans-serif;
+    font-weight: 400;
+    font-size: clamp(11px, 1.4vw, 13px);
+    line-height: 1;
+    letter-spacing: normal;
+    color: #ff742a;
+    white-space: nowrap;
+  }
+{% endstyle %}
+
+{% schema %}
+{
+  "name": "SA Bundle Products",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection",
+      "info": "Select the collection to display products from"
+    },
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "label": "Products to show",
+      "min": 1,
+      "max": 50,
+      "step": 1,
+      "default": 9
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Section Background Color",
+      "default": "#fffefb"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Bundle Products"
+    }
+  ]
+}
+{% endschema %}

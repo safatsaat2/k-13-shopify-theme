@@ -81,6 +81,15 @@
         "color_scheme": ""
       }
     },
+    "rh_bundle_products_xexMWn": {
+      "type": "rh-bundle-products",
+      "name": "Bundle Products",
+      "settings": {
+        "collection": "courses",
+        "products_to_show": 9,
+        "background_color": "#fffefb"
+      }
+    },
     "rh_disover_sec_PpqQ3x": {
       "type": "rh-disover-sec",
       "blocks": {
@@ -281,6 +290,7 @@
   },
   "order": [
     "nxt_hero_area_wQAKDL",
+    "rh_bundle_products_xexMWn",
     "rh_disover_sec_PpqQ3x",
     "rh_site_features_sec_cBUtfj",
     "sa_testimonial_section_9YdabA"

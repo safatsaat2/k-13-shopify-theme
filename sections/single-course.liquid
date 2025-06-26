@@ -1,0 +1,711 @@
+{{ 'single-course.css' | asset_url | stylesheet_tag }}
+{% if product.metafields.custom.subject.value != blank %}
+  {% assign subjects = product.metafields.custom.subject.value %}
+  {% assign course_names_array = subjects | map: 'title' %}
+  {% assign global_course_names = course_names_array | join: ', ' %}
+{% endif %}
+<div class="nxt-singleCourse__hero-area" style="background-image: url({{ 'course-bg.png' | asset_url }});">
+  <div class="nxt-container">
+    <div class="hero-content">
+      <div>
+        <div class="breadcrumb">
+          <a href="/" class="breadcrumb-text">Home</a>
+          <span class="breadcrumb-arrow">
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 20 20"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                  d="M7.5 15L11.7929 10.7071C12.1262 10.3738 12.2929 10.2071 12.2929 10C12.2929 9.79291 12.1262 9.62624 11.7929 9.29291L7.5 5.00002"
+                  stroke="#171717" stroke-width="1.5" stroke-linecap="round"
+                  stroke-linejoin="round" />
+            </svg>
+          </span>
+          <span class="breadcrumb-text">{{ product.title }}</span>
+        </div>
+        <h1 class="course-title">
+          {% if global_course_names != blank %} Bundle: {% endif %}
+          {{ product.title }}
+          {% if global_course_names != blank %} - {{ global_course_names }} {% endif %}
+        </h1>
+        <div class="course-description">
+          {{ product.description }}
+        </div>
+        <div class="course-meta">
+          <span class="meta-tag">
+            {{- product.metafields.custom.education_level.value.label | default: 'UK Year 5 / Grade 4 Equivalent' -}}
+          </span>
+          <span class="meta-tag">{{ product.metafields.custom.age_group.value.label | default: '9-10 years' }}</span>
+
+          <div class="rating">
+            <span class="rating-star">
+              <svg
+                width="21"
+                height="21"
+                viewBox="0 0 21 21"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                    d="M9.38069 1.18829C9.85198 0.25115 11.1873 0.290198 11.6193 1.18829L14.2114 6.38161L19.9454 7.20161C20.9665 7.3578 21.3593 8.60732 20.6131 9.34922L16.4893 13.3711L17.4711 19.033C17.6282 20.0482 16.5286 20.8292 15.6253 20.3606L10.5196 17.6663L5.37474 20.3606C4.47144 20.8292 3.37177 20.0482 3.52887 19.033L4.51072 13.3711L0.386947 9.34922C-0.359259 8.60732 0.0334812 7.3578 1.05461 7.20161L6.82788 6.38161L9.38069 1.18829Z"
+                    fill="#FDC353" />
+              </svg>
+            </span>
+            <span class="rating-score">{{ product.metafields.custom.rating.value | default: '4.8' }}</span>
+            <span class="rating-count"
+              >({{ product.metafields.custom.rating_count.value | default: '130k' }} reviews)</span
+            >
+          </div>
+        </div>
+      </div>
+      <nav class="course-tabs">
+        <a href="#overview" class="tab-item active">Course overview</a>
+        <a href="#whats_included" class="tab-item">What's included</a>
+        <a href="#curriculum" class="tab-item">Curriculum overview</a>
+        <a href="#why_choose_bundle" class="tab-item">Why choose {{ product.title }} bundle?</a>
+        <a href="#expert_educators" class="tab-item">Expert Educators</a>
+        <a href="#reviews" class="tab-item">Reviews</a>
+      </nav>
+    </div>
+  </div>
+</div>
+<div class="nxt-singleCourse__content-area">
+  <div class="nxt-container">
+    <div class="nxt-singleCourse__content-container">
+      <div class="nxt-singleCourse__content-left">
+        {% assign overview = product.metafields.custom.overview %}
+        {% if overview %}
+          <div id="overview" class="nxt-contentBox">
+            <h2 class="nxt-contentBox__header">Overview</h2>
+            <div class="nxt-contentBox__content">
+              {{ overview | metafield_tag }}
+            </div>
+          </div>
+        {% endif %}
+        {% if product.metafields.custom.whats_included %}
+          {% assign whats_included = product.metafields.custom.whats_included.value %}
+          <div id="whats_included" class="nxt-contentBox">
+            <h2 class="nxt-contentBox__header">What's included</h2>
+            <div class="nxt-card__wrapper">
+              {% for item in whats_included %}
+                {% assign title = item.title.value %}
+                {% assign description = item.description.value %}
+                {% assign icon = item.icon_image.value %}
+                {% assign color = item.background_color.value %}
+
+                <div class="nxt-included_card" style="background-color: {{ color }}1A; ">
+                  <div class="nxt-included_card-icon" style="background-color: {{ color }};">
+                    <img src="{{ icon | image_url: width: 24 }}" alt="{{ title }}" width="24" height="24">
+                  </div>
+                  <div class="nxt-included_card-content">
+                    <h3 class="nxt-included_card-title" style="color: {{ color }};">{{ title }}</h3>
+                    <div class="nxt-included_card-description">{{ description }}</div>
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+        {% endif %}
+        {% if product.metafields.custom.subject.value != blank %}
+          <div id="curriculum" class="nxt-contentBox">
+            <h2 class="nxt-contentBox__header">Curriculum overview</h2>
+            <div class="nxt-curriculum__wrapper">
+              <div class="nxt-curriculum__container">
+                <nav class="nxt-curriculum__tabs" role="tablist">
+                  {% for subject_data in subjects %}
+                    {% assign course_name = subject_data.title %}
+                    <button
+                      class="nxt-curriculum__tab {% if forloop.first %}nxt-curriculum__tab--active{% else %}nxt-curriculum__tab--inactive{% endif %}"
+                      role="tab"
+                      aria-selected="{% if forloop.first %}true{% else %}false{% endif %}"
+                    >
+                      <span class="nxt-curriculum__tab-text {% if forloop.first %}nxt-curriculum__tab-text--active{% else %}nxt-curriculum__tab-text--inactive{% endif %}">
+                        {{- course_name -}}
+                      </span>
+                    </button>
+                  {% endfor %}
+                </nav>
+                {% for subject_data in subjects %}
+                  {% assign course_name = subject_data.title %}
+                  <div class="nxt-curriculum__section__wrapper" id="{{ course_name | handleize }}">
+                    {% for section in subject_data.module.value %}
+                      {% assign module_name = section.module_name.value %}
+                      {% assign lesson_name = section.lessons_names.value %}
+                      {% assign videos = section.lessons_videos.value %}
+                      {% assign total = lesson_name.size %}
+                      <div class="nxt-modules">
+                        <h2 class="nxt-curriculum__section-title">{{ module_name }}</h2>
+                        <div class="nxt-curriculum__section">
+                          {% for lesson in lesson_name %}
+                            {% assign current_index = forloop.index0 %}
+                            {% assign current_video = null %}
+
+                            {% comment %} Get the video at the same index as the current lesson {% endcomment %}
+                            {% for video in videos %}
+                              {% if forloop.index0 == current_index %}
+                                {% assign current_video = video %}
+                                {% break %}
+                              {% endif %}
+                            {% endfor %}
+
+                            <article
+                              class="nxt-curriculum__module {% if forloop.first %}module_open{% endif %}"
+                              data-video-index="{{ current_index }}"
+                            >
+                              <div class="nxt-curriculum__module-header">
+                                <div class="nxt-curriculum__module-content">
+                                  <div class="nxt-curriculum__module-number">
+                                    <span class="nxt-curriculum__module-number-text">{{ forloop.index }}</span>
+                                  </div>
+                                  <h3 class="nxt-curriculum__module-title">{{ lesson }}</h3>
+                                </div>
+                                <div class="nxt-arrow-icon">
+                                  <svg
+                                    width="28"
+                                    height="28"
+                                    viewBox="0 0 28 28"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                  >
+                                    <path
+                                        d="M21 17.5L14.7071 11.2071C14.3738 10.8738 14.2071 10.7071 14 10.7071C13.7929 10.7071 13.6262 10.8738 13.2929 11.2071L7 17.5"
+                                        stroke="#262626" stroke-width="1.5" stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                  </svg>
+                                </div>
+                                <div class="nxt-play-icon">
+                                  <svg
+                                    width="28"
+                                    height="28"
+                                    viewBox="0 0 28 28"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                  >
+                                    <path
+                                        d="M27 14C27 21.18 21.18 27 14 27C6.82 27 1 21.18 1 14C1 6.82 6.82 1 14 1C21.18 1 27 6.82 27 14Z"
+                                        stroke="#0045AD" stroke-width="2" />
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M11.7 19.467V8.53296L19.434 14L11.7 19.467Z" fill="#0045AD" />
+                                  </svg>
+                                </div>
+                                <div class="nxt-locked-icon">
+                                  <svg
+                                    width="28"
+                                    height="28"
+                                    viewBox="0 0 28 28"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    aria-hidden="true"
+                                  >
+                                    <path
+                                        d="M21.875 10.5H21V7.16056C21 3.14519 18.0946 0 13.9676 0C9.82406 0 7 3.21213 7 7.16056V10.5H6.125C4.19475 10.5 2.625 12.0697 2.625 14V24.5C2.625 26.4303 4.19475 28 6.125 28H21.875C23.8053 28 25.375 26.4303 25.375 24.5V14C25.375 12.0697 23.8053 10.5 21.875 10.5ZM8.75 7.16056C8.75 4.17769 10.7888 1.75 13.9676 1.75C17.1137 1.75 19.25 4.1265 19.25 7.16056V10.5H8.75V7.16056ZM23.625 24.5C23.625 25.4647 22.8397 26.25 21.875 26.25H6.12503C5.16034 26.25 4.37503 25.4647 4.37503 24.5V14C4.37503 13.0353 5.16034 12.25 6.12503 12.25H21.875C22.8397 12.25 23.625 13.0353 23.625 14V24.5ZM14 15.75C13.0336 15.75 12.25 16.5336 12.25 17.5C12.25 18.1462 12.6044 18.704 13.125 19.0072V21.875C13.125 22.358 13.517 22.75 14 22.75C14.483 22.75 14.875 22.358 14.875 21.875V19.0072C15.3957 18.704 15.75 18.1458 15.75 17.5C15.75 16.5336 14.9665 15.75 14 15.75Z"
+                                        fill="#262626" />
+                                  </svg>
+                                </div>
+                              </div>
+
+                              {% if current_video %}
+                                <figure class="nxt-curriculum__module-video">
+                                  {{ current_video | video_tag: image_size: '652x489' }}
+                                  <button class="nxt-curriculum__module-video-play" aria-label="Play video">
+                                    <svg
+                                      width="24"
+                                      height="24"
+                                      viewBox="0 0 24 24"
+                                      fill="none"
+                                      xmlns="http://www.w3.org/2000/svg"
+                                      aria-hidden="true"
+                                    >
+                                      <rect width="24" height="24" fill="white" />
+                                      <path
+                                          d="M4.62355 3.35132C4.85479 3.21713 5.13998 3.21617 5.3721 3.34882L19.3721 11.3488C19.6058 11.4824 19.75 11.7309 19.75 12C19.75 12.2691 19.6058 12.5177 19.3721 12.6512L5.3721 20.6512C5.13998 20.7838 4.85479 20.7829 4.62355 20.6487C4.39232 20.5145 4.25 20.2674 4.25 20V4C4.25 3.73265 4.39232 3.48551 4.62355 3.35132Z"
+                                          fill="#0045AD" />
+                                    </svg>
+                                  </button>
+                                </figure>
+                              {% endif %}
+                            </article>
+                          {% endfor %}
+                        </div>
+                      </div>
+                    {% endfor %}
+                    <button class="nxt-curriculum__view-all">
+                      <div class="nxt-curriculum__view-all-content">
+                        <span class="nxt-curriculum__view-all-text">view all modules</span>
+                        <svg
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                          aria-hidden="true"
+                        >
+                          <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="#0045AD" stroke-width="1.5" stroke-linecap="round"
+                              stroke-linejoin="round" />
+                        </svg>
+                      </div>
+                    </button>
+                  </div>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+        {% endif %}
+        {% assign why_choose_bundle = product.metafields.custom.why_choose_bundle.value %}
+        {% if why_choose_bundle %}
+          <div id="why_choose_bundle" class="nxt-contentBox">
+            <h2 class="nxt-contentBox__header">Why choose {{ product.title }} bundle?</h2>
+            <div class="nxt-contentBox__content">
+              <ul>
+                {% for item in why_choose_bundle %}
+                  <li>{{ item }}</li>
+                {% endfor %}
+              </ul>
+            </div>
+          </div>
+        {% endif %}
+        {% if product.metafields.custom.expert_educators %}
+          {% assign expert_educators = product.metafields.custom.expert_educators.value %}
+          <div id="expert_educators" class="nxt-contentBox">
+            <h2 class="nxt-contentBox__header">Meet Our Expert Educators</h2>
+            <div class="nxt-card__wrapper">
+              {% for info in expert_educators %}
+                {% assign name = info.educators_name.value %}
+                {% assign designation = info.designation.value %}
+                {% assign description = info.description.value %}
+                {% assign educator_image = info.educator_image.value %}
+
+                <div class="nxt-educator_card">
+                  <img
+                    class="nxt-educator_card-icon"
+                    src="{{ 'expert-icon.png' | asset_url }}"
+                    alt="{{ name }}"
+                    width="32"
+                    height="32"
+                  >
+                  <div class="nxt-educator-person-wrapper">
+                    <div class="nxt-educator_card-image">
+                      {% if educator_image %}
+                        <img src="{{ educator_image | image_url: width: 56 }}" alt="{{ name }}" width="56" height="56">
+                      {% else %}
+                        <img src="https://placehold.co/56x56" alt="{{ name }}" width="56" height="56">
+                      {% endif %}
+                    </div>
+                    <div class="nxt-educator-person">
+                      <h3 class="nxt-educator_card-title">{{ name }}</h3>
+                      <p class="nxt-educator_card-designation">{{ designation }}</p>
+                    </div>
+                  </div>
+                  <div class="nxt-educator_card-description">{{ description }}</div>
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+        {% endif %}
+        <!-- Review Section -->
+        {% for block in section.blocks %}
+          {% if block.type == 'reviews' %}
+            <div id="reviews" class="course-details__section course-details__review review-section nxt-contentBox">
+              <h2 class="course-details__title review-section__title nxt-contentBox__header">
+                {{ block.settings.review_title | default: ' Student Reviews & Parent Feedback' }}
+              </h2>
+              <div class="review-summary-row">
+                <div class="review-summary__box">
+                  <div class="review-summary__rating">{{ product.metafields.custom.rating | default: 5 }}</div>
+                  <div class="review-summary__stars">
+                    {% assign rating = product.metafields.custom.course_rating | default: 5 %}
+                    {% assign rating_percentage = rating | times: 20 %}
+                    <svg viewBox="0 0 1000 200" class="rating">
+                      <defs>
+                        <polygon id="star" points="100,0 131,66 200,76 150,128 162,200 100,166 38,200 50,128 0,76 69,66"></polygon>
+                        <clipPath id="stars">
+                          <use xlink:href="#star"></use>
+                          <use xlink:href="#star" x="20%"></use>
+                          <use xlink:href="#star" x="40%"></use>
+                          <use xlink:href="#star" x="60%"></use>
+                          <use xlink:href="#star" x="80%"></use>
+                        </clipPath>
+                      </defs>
+                      <rect class="rating__background" clip-path="url(#stars)"></rect>
+                      <rect width="{{ rating_percentage }}%" class="rating__value" clip-path="url(#stars)"></rect>
+                    </svg>
+                  </div>
+                  <div class="review-summary__label">
+                    {{ block.settings.rating_label | default: 'Course Rating' }}
+                  </div>
+                  <a
+                    href="{{ block.settings.leave_review_url | default: '/collections/all' }}"
+                    class="review-summary__link"
+                  >
+                    {{- block.settings.leave_review_text | default: 'Leave a review' -}}
+                  </a>
+                </div>
+                <div class="review-summary__box" style="align-items: flex-start;">
+                  <div class="review-summary__progress">
+                    {% for i in (1..3) %}
+                      {% assign label = 'progress_label_' | append: i %}
+                      {% assign value = 'progress_value_' | append: i %}
+                      <div class="review-progress__item">
+                        <div class="review-progress__label-row">
+                          <span class="review-progress__label">{{ block.settings[label] }}</span>
+                          <span class="review-progress__value">{{ block.settings[value] }}%</span>
+                        </div>
+                        <div class="review-progress__bar-bg">
+                          <div class="review-progress__bar-fill" style="width: {{ block.settings[value] }}%;"></div>
+                        </div>
+                      </div>
+                    {% endfor %}
+                  </div>
+                </div>
+              </div>
+              <div class="review-filters">
+                {% for i in (1..3) %}
+                  {% assign filter = 'filter_' | append: i %}
+                  {% if block.settings[filter] != blank %}
+                    <span class="review-filters__item {% if forloop.first %}review-filters__item--active{% endif %}">
+                      {{- block.settings[filter] -}}
+                    </span>
+                    {% unless forloop.last %}
+                      <span class="review-filters__dot"></span>
+                    {% endunless %}
+                  {% endif %}
+                {% endfor %}
+              </div>
+              <div class="review-list">
+                {% if product.metafields.custom.student_reviews_parent_feedback %}
+                  {% assign student_reviews_parent_feedback = product.metafields.custom.student_reviews_parent_feedback.value %}
+                  {% for review in student_reviews_parent_feedback %}
+                    {% assign name = review.name.value %}
+                    {% assign designation = review.designation.value %}
+                    {% assign description = review.review.value %}
+                    {% assign reviewer_image = review.image.value %}
+                    {% assign rating_count = review.rating_count.value %}
+                    {% assign review_date = review.review_date_text.value %}
+                    {% if forloop.index <= 2 %}
+                      <div class="review-card">
+                        <div class="review-card__header">
+                          <div class="review-card__user">
+                            {% if reviewer_image != blank %}
+                              <img
+                                class="review-card__avatar"
+                                src="{{ reviewer_image | image_url: width: 56 }} }}"
+                                alt="{{ name }}"
+                                width="56"
+                                height="56"
+                              >
+                            {% else %}
+                              <div class="review-card__avatar">
+                                <img src="https://placehold.co/56x56" alt="{{ name }}" width="56" height="56">
+                              </div>
+                            {% endif %}
+                            <div class="review-card__user-info">
+                              <div class="review-card__user-name">
+                                {{ name }}
+                              </div>
+                              <div class="review-card__user-meta">
+                                <span>{{ designation }}</span>
+                                <span class="review-filters__dot"></span>
+                                <div class="review-card__rating">
+                                  <span>{{ rating_count }}</span>
+                                  <svg
+                                    width="16"
+                                    height="15"
+                                    viewBox="0 0 16 15"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                  >
+                                    <path d="M7.08203 1.24219C7.41016 0.585938 8.33984 0.613281 8.64062 1.24219L10.4453 4.87891L14.4375 5.45312C15.1484 5.5625 15.4219 6.4375 14.9023 6.95703L12.0312 9.77344L12.7148 13.7383C12.8242 14.4492 12.0586 14.9961 11.4297 14.668L7.875 12.7812L4.29297 14.668C3.66406 14.9961 2.89844 14.4492 3.00781 13.7383L3.69141 9.77344L0.820312 6.95703C0.300781 6.4375 0.574219 5.5625 1.28516 5.45312L5.30469 4.87891L7.08203 1.24219Z" fill="#FE8E16"/>
+                                  </svg>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="review-card__date">
+                            {{ review_date }}
+                          </div>
+                        </div>
+                        <div class="review-card__text">
+                          {{ description }}
+                        </div>
+                      </div>
+                    {% endif %}
+                  {% endfor %}
+                {% endif %}
+              </div>
+              <div class="review-button-wrapper">
+                <a
+                  href="{{ block.settings.view_more_url | default: '/collections/all' }}"
+                  class="review-section__view-more"
+                >
+                  {{- block.settings.view_more_text | default: 'View more' -}}
+                </a>
+              </div>
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+      <aside class="nxt-singleCourse__sidebar">
+        <div class="nxt-singleCourse__sidebar-title">
+          <h3>Course overview</h3>
+        </div>
+        <ul class="nxt-contentBox__list">
+          <li>
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                  d="M20.5 16.9286V10C20.5 6.22876 20.5 4.34315 19.3284 3.17157C18.1569 2 16.2712 2 12.5 2H11.5C7.72876 2 5.84315 2 4.67157 3.17157C3.5 4.34315 3.5 6.22876 3.5 10V19.5"
+                  stroke="black" stroke-width="1.5" stroke-linecap="round" />
+              <path d="M20.5 17H6C4.61929 17 3.5 18.1193 3.5 19.5C3.5 20.8807 4.61929 22 6 22H20.5"
+                  stroke="black" stroke-width="1.5" stroke-linecap="round" />
+              <path d="M20.5 17C19.1193 17 18 18.1193 18 19.5C18 20.8807 19.1193 22 20.5 22"
+                  stroke="black" stroke-width="1.5" stroke-linecap="round" />
+              <path
+                  d="M14.9609 9.83839C14.8347 10.3756 14.2381 10.7552 13.0449 11.5144C11.8914 12.2484 11.3147 12.6153 10.8499 12.4678C10.6578 12.4068 10.4827 12.291 10.3415 12.1315C10 11.7456 10 10.997 10 9.5C10 8.00296 10 7.25444 10.3415 6.86853C10.4827 6.70898 10.6578 6.59315 10.8499 6.53217C11.3147 6.38466 11.8914 6.75163 13.0449 7.48557C14.2381 8.24479 14.8347 8.6244 14.9609 9.16161C15.013 9.38335 15.013 9.61665 14.9609 9.83839Z"
+                  stroke="black" stroke-width="1.5" stroke-linejoin="round" />
+            </svg>
+            {{ global_course_names }}
+          </li>
+          <li>
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                  d="M8 21H16M12 17V21M4 3H20C21.1046 3 22 3.89543 22 5V15C22 16.1046 21.1046 17 20 17H4C2.89543 17 2 16.1046 2 15V5C2 3.89543 2.89543 3 4 3Z"
+                  stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            {{ product.metafields.custom.course_content.value | default: 'Online' }}
+          </li>
+          <li>
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <circle cx="12" cy="12" r="10" stroke="black" stroke-width="1.5" />
+              <path d="M12 8V12L14 14" stroke="black" stroke-width="1.5" stroke-linecap="round"
+                  stroke-linejoin="round" />
+            </svg>
+            {{ product.metafields.custom.course_access_duration.value | default: '3 months access' }}
+          </li>
+          <li>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M4.5 9.49921C4.5 13.6413 7.85786 16.9992 12 16.9992C16.1421 16.9992 19.5 13.6413 19.5 9.49921C19.5 5.35707 16.1421 1.99921 12 1.99921C7.85786 1.99921 4.5 5.35707 4.5 9.49921Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M9 10.1667C9 10.1667 9.75 10.1667 10.5 11.5C10.5 11.5 12.8824 8.16667 15 7.5" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M16.8825 15L17.5527 18.2099C17.9833 20.2723 18.1986 21.3035 17.7563 21.7923C17.3141 22.281 16.546 21.8606 15.0099 21.0198L12.7364 19.7753C12.3734 19.5766 12.1919 19.4773 12 19.4773C11.8081 19.4773 11.6266 19.5766 11.2636 19.7753L8.99008 21.0198C7.45397 21.8606 6.68592 22.281 6.24365 21.7923C5.80139 21.3035 6.01669 20.2723 6.44731 18.2099L7.11752 15" stroke="black" stroke-width="1.5" stroke-linejoin="round"/>
+            </svg>
+
+            {{ product.metafields.custom.cpd_points.value | default: '50 CPD points' }}
+          </li>
+          <li>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M11.5 22C7.49306 22 5.48959 22 4.2448 20.5355C3 19.0711 3 16.714 3 12C3 7.28596 3 4.92893 4.2448 3.46447C5.48959 2 7.49306 2 11.5 2C15.5069 2 17.5104 2 18.7552 3.46447C19.7572 4.64332 19.9527 6.40054 19.9908 9.5" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M8 8.00006H15M8 13.0001H11" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M19.6092 18.1054C20.4521 17.4918 21 16.4974 21 15.3751C21 13.5111 19.489 12.0001 17.625 12.0001H17.375C15.511 12.0001 14 13.5111 14 15.3751C14 16.4974 14.5479 17.4918 15.3908 18.1054M19.6092 18.1054C19.0523 18.5109 18.3666 18.7501 17.625 18.7501H17.375C16.6334 18.7501 15.9477 18.5109 15.3908 18.1054M19.6092 18.1054L20.192 19.9405C20.4143 20.6404 20.5255 20.9903 20.4951 21.2083C20.4318 21.6618 20.0619 21.9985 19.6252 22.0001C19.4154 22.0008 19.101 21.8359 18.4723 21.5059C18.2027 21.3644 18.0679 21.2937 17.93 21.2521C17.649 21.1674 17.351 21.1674 17.07 21.2521C16.9321 21.2937 16.7973 21.3644 16.5277 21.5059C15.899 21.8359 15.5846 22.0008 15.3748 22.0001C14.9381 21.9985 14.5682 21.6618 14.5049 21.2083C14.4745 20.9903 14.5857 20.6404 14.808 19.9405L15.3908 18.1054" stroke="black" stroke-width="1.5"/>
+            </svg>
+
+            {{ product.metafields.custom.certificate.value | default: 'Certificate(s) included' }}
+          </li>
+          <li>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M2 8C2 9.34178 10.1062 13 12 13C13.8938 13 22 9.34178 22 8C22 6.65822 13.8938 3 12 3C10.1062 3 2 6.65822 2 8Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M6 11L6.24545 16.6299C6.25036 16.7426 6.26256 16.8555 6.29528 16.9635C6.39639 17.2973 6.58275 17.6006 6.86707 17.8044C9.09162 19.3985 14.9084 19.3985 17.1329 17.8044C17.4173 17.6006 17.6036 17.2973 17.7047 16.9635C17.7374 16.8555 17.7496 16.7426 17.7546 16.6299L18 11" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M21.25 9.5C21.25 9.08579 20.9142 8.75 20.5 8.75C20.0858 8.75 19.75 9.08579 19.75 9.5H21.25ZM19.0714 19.7634L19.8011 19.9368L19.0714 19.7634ZM21.9286 19.7634L22.6583 19.5901L21.9286 19.7634ZM20.5 9.5H19.75V16.5072H20.5H21.25V9.5H20.5ZM19.0714 19.7634L19.8011 19.9368C19.946 19.327 20.1952 18.7697 20.4619 18.2478C20.7062 17.7696 21.0263 17.2164 21.1976 16.7827L20.5 16.5072L19.8024 16.2317C19.6655 16.5784 19.4364 16.9581 19.1261 17.5653C18.8382 18.1288 18.5272 18.8095 18.3417 19.5901L19.0714 19.7634ZM21.9286 19.7634L22.6583 19.5901C22.4728 18.8095 22.1618 18.1288 21.8739 17.5653C21.5636 16.9581 21.3345 16.5784 21.1976 16.2317L20.5 16.5072L19.8024 16.7827C19.9737 17.2164 20.2938 17.7696 20.5381 18.2478C20.8048 18.7697 21.054 19.327 21.1989 19.9368L21.9286 19.7634ZM20.8154 21V20.25H20.1846V21V21.75H20.8154V21ZM19.0714 19.7634L18.3417 19.5901C18.2184 20.1094 18.1443 20.7964 18.6335 21.287C18.8626 21.5168 19.1451 21.6247 19.3939 21.6799C19.6419 21.7349 19.914 21.75 20.1846 21.75V21V20.25C19.9563 20.25 19.8101 20.2358 19.7186 20.2155C19.628 20.1954 19.6499 20.1821 19.6957 20.228C19.7534 20.2858 19.7542 20.3398 19.7514 20.3095C19.747 20.2626 19.7504 20.1504 19.8011 19.9368L19.0714 19.7634ZM21.9286 19.7634L21.1989 19.9368C21.2496 20.1504 21.253 20.2626 21.2486 20.3095C21.2458 20.3398 21.2466 20.2858 21.3043 20.228C21.3501 20.1821 21.372 20.1954 21.2814 20.2155C21.1899 20.2358 21.0437 20.25 20.8154 20.25V21V21.75C21.086 21.75 21.3581 21.7349 21.6061 21.6799C21.8549 21.6247 22.1374 21.5168 22.3665 21.287C22.8557 20.7964 22.7816 20.1094 22.6583 19.5901L21.9286 19.7634Z" fill="black"/>
+            </svg>
+
+            {{ product.metafields.custom.tutor.value | default: 'Tutor support' }}
+          </li>
+          <li>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M11.9982 2C8.99043 2 7.04018 4.01899 4.73371 4.7549C3.79589 5.05413 3.32697 5.20374 3.1372 5.41465C2.94743 5.62556 2.89186 5.93375 2.78072 6.55013C1.59143 13.146 4.1909 19.244 10.3903 21.6175C11.0564 21.8725 11.3894 22 12.0015 22C12.6135 22 12.9466 21.8725 13.6126 21.6175C19.8116 19.2439 22.4086 13.146 21.219 6.55013C21.1078 5.93364 21.0522 5.6254 20.8624 5.41449C20.6726 5.20358 20.2037 5.05405 19.2659 4.75499C16.9585 4.01915 15.0061 2 11.9982 2Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M9 13C9 13 10 13 11 15C11 15 14.1765 10 17 9" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+
+            {{ product.metafields.custom.refund_policy.value | default: '7-day refund policy' }}
+          </li>
+        </ul>
+        <div class="nxt-bundle__purchase">
+          <div class="price">
+            <span class="price__original">{{ product.price | money }}</span>
+            <span>/month</span>
+          </div>
+          <form method="post" action="/cart/add">
+            <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+            <input type="hidden" name="return_to" value="/cart">
+            <button type="submit" class="nxt-purchase-button">Buy all bundles</button>
+          </form>
+        </div>
+        {% if product.metafields.custom.what_you_get.value.size > 0 %}
+          <div class="nxt-singleCourse__sidebar-title">
+            <h3>What you get</h3>
+          </div>
+          <ul class="nxt-contentBox__list">
+            {% for item in product.metafields.custom.what_you_get.value %}
+              <li>
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                      d="M22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22C17.5228 22 22 17.5228 22 12Z"
+                      stroke="black" stroke-width="1.5" />
+                  <path d="M8 12.5L10.5 15L16 9" stroke="black" stroke-width="1.5" stroke-linecap="round"
+                      stroke-linejoin="round" />
+                </svg>
+
+                {{ item }}
+              </li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      </aside>
+    </div>
+  </div>
+</div>
+<script src="{{ 'curriculum.js' | asset_url }}" defer></script>
+{% schema %}
+{
+  "name": "Single Course",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "reviews",
+      "name": "Reviews Section",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "review_title",
+          "label": "Section Title",
+          "default": "Review"
+        },
+        {
+          "type": "text",
+          "id": "rating_label",
+          "label": "Rating Label",
+          "default": "Course Rating"
+        },
+        {
+          "type": "url",
+          "id": "leave_review_url",
+          "label": "Leave Review URL"
+        },
+        {
+          "type": "text",
+          "id": "review_date_text",
+          "label": "Review Date Text",
+          "default": "Posted recently"
+        },
+        {
+          "type": "text",
+          "id": "view_more_text",
+          "label": "View More Text",
+          "default": "View more"
+        },
+        {
+          "type": "url",
+          "id": "view_more_url",
+          "label": "View More URL"
+        },
+        {
+          "type": "header",
+          "content": "Progress Bars"
+        },
+        {
+          "type": "text",
+          "id": "progress_label_1",
+          "label": "Progress Label 1",
+          "default": "Service"
+        },
+        {
+          "type": "range",
+          "id": "progress_value_1",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "label": "Progress Value 1",
+          "default": 97
+        },
+        {
+          "type": "text",
+          "id": "progress_label_2",
+          "label": "Progress Label 2",
+          "default": "Content"
+        },
+        {
+          "type": "range",
+          "id": "progress_value_2",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "label": "Progress Value 2",
+          "default": 95
+        },
+        {
+          "type": "text",
+          "id": "progress_label_3",
+          "label": "Progress Label 3",
+          "default": "Value"
+        },
+        {
+          "type": "range",
+          "id": "progress_value_3",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "label": "Progress Value 3",
+          "default": 90
+        },
+        {
+          "type": "header",
+          "content": "Filter Options"
+        },
+        {
+          "type": "text",
+          "id": "filter_1",
+          "label": "Filter 1",
+          "default": "Most Recent"
+        },
+        {
+          "type": "text",
+          "id": "filter_2",
+          "label": "Filter 2",
+          "default": "Highest Rated"
+        },
+        {
+          "type": "text",
+          "id": "filter_3",
+          "label": "Filter 3",
+          "default": "Lowest Rated"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Single Course",
+      "blocks": [
+        {
+          "type": "reviews"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
